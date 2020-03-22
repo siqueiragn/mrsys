@@ -1,0 +1,42 @@
+body {
+    //background: url('../images/background.png') no-repeat center center fixed;  background-size: cover;
+    background: url('https://media.discordapp.net/attachments/521817269001519104/544237875739492373/2653426-rsg_gtav_ng_screenshot_083.jpg') no-repeat center center fixed;  background-size: cover;
+}
+
+.divider {
+    color: white;
+    text-align: center;
+    border-bottom: 1px solid white;
+    width: 80%;
+    margin-left: 10%;
+    padding: 5px;
+//font-weight: bold;
+}
+
+.img-skin {
+    height: 150px;
+    width: 75px;
+}
+
+.alert-success{
+    background-color: green !important;
+}
+.alert-error{
+    background-color: red !important;
+}
+
+.danger {
+    color: red;
+}
+
+.perfil-legend {
+    text-align: left;
+    font-weight: bold;
+}
+.perfil-title{
+    text-align: left;
+}
+.img-avatar {
+    height: 150px;
+    width: 150px;
+}
