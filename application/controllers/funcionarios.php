@@ -43,7 +43,19 @@ class Funcionarios extends MY_Controller {
 
         $this->load->model('funcionario');
 
-        $data['objetos'] = $this->funcionario->getAll();
+        if ($this->input->get()) {
+
+            $nome   = $this->input->get('nome');
+            $cpf    = limpar_campo($this->input->get('cpf'));
+            $status = $this->input->get('status');
+
+            $data['objetos'] = $this->funcionario->getFilters( $nome, $cpf, $status );
+
+        } else {
+
+            $data['objetos'] = $this->funcionario->getAll();
+
+        }
 
         $this->load->view($this->router->class . '/listar', $data);
 
@@ -55,20 +67,20 @@ class Funcionarios extends MY_Controller {
         $this->load->model('funcionario');
 			
         $nome            = $this->input->post("nome");
-        $cpf             = $this->input->post("cpf");
-        $rg         	 = $this->input->post("rg");
+        $cpf             = limpar_campo($this->input->post("cpf"));
+        $rg         	 = limpar_campo($this->input->post("rg"));
         $data_nascimento = $this->input->post("data_nascimento");
         $contratacao     = $this->input->post('contratacao');
         $vencimentocnh   = $this->input->post('vencimentocnh');
-        $cnh             = $this->input->post('cnh');
+        $cnh             = limpar_campo($this->input->post('cnh'));
         $pai             = $this->input->post('pai');
         $mae             = $this->input->post('mae');
         $endereco        = $this->input->post('endereco');
         $complemento     = $this->input->post('complemento');
-        $cep             = $this->input->post('cep');
+        $cep             = limpar_campo($this->input->post('cep'));
         $cidade          = $this->input->post('cidade');
-        $tel             = $this->input->post('tel');
-        $cel             = $this->input->post('cel');
+        $tel             = limpar_campo($this->input->post('tel'));
+        $cel             = limpar_campo($this->input->post('cel'));
         $conta           = $this->input->post('conta');
         $banco           = $this->input->post('banco');
         $agencia         = $this->input->post('agencia');

@@ -100,11 +100,35 @@ class Funcionario extends CI_Model  {
                             ->get($this->table);
 
     }
+
     function getAll() {
 
             return $this->db->select('*')
                             ->order_by('ID')
                             ->get($this->table);
+
+    }
+
+    function getFilters($nome = null, $cpf = null, $status = '1' ) {
+
+            $this->db->select('*');
+
+            if ( $nome != '') {
+                $this->db->where("lower(nome) like lower('%$nome%')");
+            }
+
+            if ( $cpf != '' ) {
+                $this->db->where("cpf = '$cpf'");
+            }
+
+            if ( $status == '1' ) {
+                $this->db->where("ativo = 1");
+            } else if ($status == '0') {
+                $this->db->where("ativo = 0");
+            }
+
+
+            return $this->db->order_by('id')->get($this->table);
 
     }
 

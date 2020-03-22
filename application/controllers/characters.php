@@ -134,7 +134,7 @@ class Characters extends MY_Controller {
                     $dataNascimento = $this->input->post("data_nascimento");
                     $sexo           = $this->input->post("sexo");
                     $origem         = $this->input->post("origem");
-                    $idade          = calcularIdadade( $dataNascimento );
+                    $idade          = calcularIdade( $dataNascimento );
                     $skin           = $this->input->post('skin');
                     $historia       = strip_tags( $this->input->post('historia') );
                     $questao1       = strip_tags( $this->input->post('questao1') );
@@ -156,7 +156,7 @@ class Characters extends MY_Controller {
                     $dataNascimento = $this->input->post("data_nascimento");
                     $sexo           = $this->input->post("sexo");
                     $origem         = $this->input->post("origem");
-                    $idade          = calcularIdadade( $dataNascimento );
+                    $idade          = calcularIdade( $dataNascimento );
                     $skin           = $this->input->post('skin');
                     $historia       = strip_tags( $this->input->post('historia') );
                     $questao1       = strip_tags( $this->input->post('questao1') );

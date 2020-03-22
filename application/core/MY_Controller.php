@@ -53,7 +53,7 @@ class MY_Controller extends CI_Controller
 
         }
 
-        function calcularIdadade( $data )
+        function calcularIdade( $data )
         {
 
             list($dia, $mes, $ano) = explode('/', $data);
@@ -108,19 +108,39 @@ class MY_Controller extends CI_Controller
             return $CI->upload->do_upload($fonte);
 
         }
-        function upload_customizado( $pasta, $arquivo, $nome ){
 
-            if ( !is_dir($pasta)) {
-                mkdir($pasta, 777, true);
-            }
-            move_uploaded_file($arquivo, "$pasta/$nome");
-
+        function limpar_campo( $string ){
+            /* Recebe o campo com máscaras e retorna apenas os valores numéricos */
+            return preg_replace("/[^0-9]/", '', $string);
         }
 
         function pre( $entrada ){
             echo "<pre>";
             print_r($entrada);
             echo "</pre>";
+        }
+
+        function converter_cpf($cpf) {
+
+            $newCpf = '';
+
+            if (strlen($cpf) == 11) {
+                for ($i=0; $i < 11; $i++) {
+
+                    $newCpf .= substr($cpf, $i, 1 );
+                    if ($i == 2 || $i == 5) {
+                        $newCpf .= '.';
+                    }
+                    if ($i == 8) {
+                        $newCpf .= '-';
+                    }
+
+                }
+                return $newCpf;
+            }
+
+            return $cpf;
+
         }
 
 
