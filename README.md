@@ -1,5 +1,5 @@
-# UCP Base SA-MP
-## Autor: Gabriel Siqueira (gabrielndesiqueira@hotmail.com)
+# MRSys
+## Autor: Gabriel Siqueira (gabrielndesiqueira@hotmail.com), Celso Almeida (almeidajnrcelso@gmail.com)
 
 Em caso de dúvidas, contato via e-mail.
 
