@@ -92,6 +92,9 @@ class Funcionarios extends MY_Controller {
         $rastreador      = $this->input->post('rastreador');
         $diaria          = $this->input->post('diaria');
         $salario         = $this->input->post('salario');
+		$funcao         = $this->input->post('funcao');
+		$mei         = $this->input->post('mei');
+		
 
         if ( $_FILES['avatar']['name'] ) {
             $extensao        = strtolower( pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION) );
@@ -104,7 +107,7 @@ class Funcionarios extends MY_Controller {
                 case 'salvar':
 				
 					//echo pre($this->input->post());exit;
-                    $this->funcionario->salvar($nome, $cpf, $rg, $data_nascimento, $contratacao, $vencimentocnh, $cnh, $pai, $mae, $endereco,$complemento, $cep, $cidade, $tel, $cel, $conta, $banco, $agencia, $tipoconta, $veiculo, $placa, $cor, $ano, $rastreador, $diaria, $salario, $avatar);
+                    $this->funcionario->salvar($nome, $cpf, $rg, $data_nascimento, $contratacao, $vencimentocnh, $cnh, $pai, $mae, $endereco,$complemento, $cep, $cidade, $tel, $cel, $conta, $banco, $agencia, $tipoconta, $veiculo, $placa, $cor, $ano, $rastreador, $diaria, $salario, $avatar, $funcao, $mei);
 
                     $idFunc = $this->db->insert_id();
 
@@ -147,7 +150,7 @@ class Funcionarios extends MY_Controller {
 					$desligamento = $this->input->post('desligamento');
 					
 					$idFunc       = $this->input->get('cd');
-					$this->funcionario->atualizar($idFunc, $nome, $cpf, $rg, $data_nascimento, $contratacao, $vencimentocnh, $cnh, $pai, $mae, $endereco,$complemento, $cep, $cidade, $tel, $cel, $conta, $banco, $agencia, $tipoconta, $veiculo, $placa, $cor, $ano, $rastreador, $diaria, $salario, $desligamento, $status, $avatar);
+					$this->funcionario->atualizar($idFunc, $nome, $cpf, $rg, $data_nascimento, $contratacao, $vencimentocnh, $cnh, $pai, $mae, $endereco,$complemento, $cep, $cidade, $tel, $cel, $conta, $banco, $agencia, $tipoconta, $veiculo, $placa, $cor, $ano, $rastreador, $diaria, $salario, $desligamento, $status, $avatar, $funcao, $mei);
 
                     if ( $_FILES['avatar']['name'] ) {
 

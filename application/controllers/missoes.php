@@ -1,0 +1,135 @@
+<?php
+
+class Missoes extends MY_Controller {
+
+	public function index()
+	{
+
+	    redirect( $this->router->class . '/listar');
+
+	}
+	 
+	public function cadastrar()
+	{
+            $this->load->model('funcionario');
+            $data['funcionarios'] = $this->funcionario->getAtivos()->result();
+
+            $this->load->model('cliente');
+            $data['clientes'] = $this->cliente->getAll()->result();
+
+            $this->load->model('servico');
+            $data['servicos'] = $this->servico->getAll()->result();
+
+            $this->load->model('endereco');
+            $data['locais'] = $this->endereco->getAll()->result();
+
+            $this->load->view('estruturas/topo_ucp');
+            $this->load->view($this->router->class . '/cadastrar', $data);
+	}
+
+	public function editar()
+	{
+	    $this->load->model('missao');
+
+        $data['objeto'] = $this->missao->getByID( $this->uri->segment(3) )->row();
+
+        if ($data['objeto']) {
+
+            $this->load->model('funcionario');
+            $data['funcionarios'] = $this->funcionario->getAtivos()->result();
+
+            $this->load->model('cliente');
+            $data['clientes'] = $this->cliente->getAll()->result();
+
+            $this->load->model('servico');
+            $data['servicos'] = $this->servico->getAll()->result();
+            $data['servico']  = $this->servico->getByID( $data['objeto']->servico )->row();
+
+            $this->load->model('endereco');
+            $data['locais'] = $this->endereco->getAll()->result();
+
+            $this->load->view('estruturas/topo_ucp');
+            $this->load->view($this->router->class . '/editar', $data);
+            $this->load->view('estruturas/rodape_ucp');
+
+        } else {
+            redirect( $this->router->class . '/listar');
+        }
+	}
+
+	public function listar()
+    {
+        $this->load->view('estruturas/topo_ucp');
+
+        $this->load->model('missao');
+
+        if ($this->input->get()) {
+
+       /*     $nome   = $this->input->get('nome');
+            $cpf    = limpar_campo($this->input->get('cpf'));
+            $status = $this->input->get('status');*/
+
+            $data['objetos'] = $this->missao->getAll();
+
+            //$data['objetos'] = $this->funcionario->getFilters( $nome, $cpf, $status );
+
+        } else {
+
+            $data['objetos'] = $this->missao->getAll();
+
+        }
+
+        $this->load->view($this->router->class . '/listar', $data);
+
+    }
+
+	public function DB()
+    {
+
+        $this->load->model('missao');
+			
+        $cliente          = $this->input->post('cliente');
+        $servico          = $this->input->post('servico');
+        $data_hora_inicio = $this->input->post('data_hora_inicio');
+        $data_hora_final  = $this->input->post('data_hora_final');
+        $km_inicial       = $this->input->post('km_inicial');
+        $km_final         = $this->input->post('km_final');
+        $endereco         = $this->input->post('local');
+        $motorista        = $this->input->post('motorista');
+        $placa            = $this->input->post('placa');
+        $local            = $this->input->post('destino');
+        $feriado          = $this->input->post('feriado') == 'on' ? 1 : 0;
+        $agente           = $this->input->post('agente');
+        $agente_aux       = $this->input->post('agente_aux');
+
+        switch ( $this->input->get('acao')) {
+
+                case 'salvar':
+				
+					//echo pre($this->input->post());exit;
+                    $this->missao->salvar( $cliente, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $endereco, $feriado, $agente, $agente_aux, $this->nativesession->get('userID') );
+
+                break;
+                case 'atz':
+
+					$id = $this->input->get('id');
+                    $this->missao->atualizar( $cliente, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $endereco, $feriado, $agente, $agente_aux, $this->nativesession->get('userID') );
+
+                break;
+
+            }
+
+        redirect( $this->router->class . '/listar');
+    }
+
+    public function servicos()
+    {
+        $this->load->model('servico');
+        $servico = $this->servico->getByID($this->input->post('servico'))->row();
+        echo "$servico->franquiahora{QUEBRA}$servico->franquiakm";
+
+    }
+
+
+
+}

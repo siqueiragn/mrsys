@@ -12,7 +12,7 @@ class Funcionario extends CI_Model  {
 
     }
 
-    function salvar($nome, $cpf, $rg, $data_nascimento, $contratacao, $vencimentocnh, $cnh, $pai, $mae, $endereco, $complemento, $cep, $cidade, $tel, $cel, $conta, $banco, $agencia, $tipoconta, $veiculo, $placa, $cor, $ano, $rastreador, $diaria, $salario, $avatar, $avatar = null){
+    function salvar($nome, $cpf, $rg, $data_nascimento, $contratacao, $vencimentocnh, $cnh, $pai, $mae, $endereco, $complemento, $cep, $cidade, $tel, $cel, $conta, $banco, $agencia, $tipoconta, $veiculo, $placa, $cor, $ano, $rastreador, $diaria, $salario, $avatar = null){
 
         $data = array(
             'nome'            => $nome,
@@ -37,6 +37,7 @@ class Funcionario extends CI_Model  {
 			'veiculo'         => $veiculo,
             'placa'           => $placa,
 			'cor'             => $cor,
+			'ano'             => $ano,
             'rastreador'      => $rastreador,
 			'diaria'          => $diaria,
 			'salario'         => $salario,
@@ -52,7 +53,7 @@ class Funcionario extends CI_Model  {
     }
 
 
-    function atualizar($id, $nome, $cpf, $rg, $data_nascimento, $contratacao, $vencimentocnh, $cnh, $pai, $mae, $endereco, $complemento, $cep, $cidade, $tel, $cel, $conta, $banco, $agencia, $tipoconta, $veiculo, $placa, $cor, $ano, $rastreador, $diaria, $salario, $desligamento, $status, $avatar = null) {
+    function atualizar($id, $nome, $cpf, $rg, $data_nascimento, $contratacao, $vencimentocnh, $cnh, $pai, $mae, $endereco, $complemento, $cep, $cidade, $tel, $cel, $conta, $banco, $agencia, $tipoconta, $veiculo, $placa, $cor, $ano, $rastreador, $diaria, $salario, $desligamento, $status, $avatar = null, $funcao, $mei) {
 
         $data = array(
             'nome'          => $nome,
@@ -77,11 +78,16 @@ class Funcionario extends CI_Model  {
 			'veiculo'       => $veiculo,
             'placa'         => $placa,
 			'cor'           => $cor,
+			'ano'           => $ano,
             'rastreador'    => $rastreador,
 			'diaria'        => $diaria,
 			'salario'       => $salario,
 			'ativo'         => $status,
 			'desligamento'  => $desligamento,
+			'funcao'        => $funcao,
+			'mei'           => $mei,
+			
+			
         );
 
         if ( $avatar ) {
@@ -92,11 +98,11 @@ class Funcionario extends CI_Model  {
         $this->db->update($this->table, $data);
 
     }
-    function getAllByUsername( $Charactername ) {
+    function getAtivos() {
 
             return $this->db->select('*')
-                            ->where("username = '$Charactername'")
-                            ->order_by('ID')
+                            ->where("ativo = 1")
+                            ->order_by('nome')
                             ->get($this->table);
 
     }

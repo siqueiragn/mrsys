@@ -139,3 +139,53 @@ function download_arquivo( elemento, url ) {
         }
     });
 }
+
+function calcular_km() {
+    valor_inicial = $('#km_inicial').val()  ? parseInt($('#km_inicial').val()) : 0;
+    valor_final   = $('#km_final').val()    ? parseInt($('#km_final').val()) : 0;
+
+    if ( valor_final < valor_inicial && $('#km_final').val() != '') {
+        $('#km_final').val('');
+        alertify.alert('<strong>KM Final não pode ser menor que KM Inicial!</strong>');
+    }
+
+    $('#km_total').val(valor_final - valor_inicial);
+}
+
+function calcular_diferenca_data(data_inicial, data_final) {
+
+    dataInicial = moment($(data_inicial).val(), 'DD/MM/YYYY h:m');
+    dataFinal   = moment($(data_final).val(), 'DD/MM/YYYY h:m');
+
+    if ( $(data_inicial).val() != '' && $(data_final).val() != '' ) {
+        console.log( Math.abs(dataInicial.diff(dataFinal, 'minutes')) /60  );
+        setTimeout( function() { $("#diferenca_horas").val( (Math.abs(dataInicial.diff(dataFinal, 'minutes')) )/60 ) }, 500);
+    }
+
+}
+
+function buscar_servico( url ) {
+
+    id = $('#servico').val();
+    if ( id != '') {
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                servico: id,
+            },
+            success: function( retorno ){
+
+                r = retorno.split('{QUEBRA}');
+                $("#franquia_hora").val(r[0]);
+                $("#franquia_km").val(r[1]);
+
+            },
+            error: function(retorno){
+
+                alertify.alert('Não foi possível realizar o download do arquivo!');
+             }
+        });
+    }
+
+}

@@ -63,17 +63,28 @@
                                             </div>
 
                                         </div>
-
+										   <div class="form-group">
+                                            <label class="col-lg-3 col-xs-3 control-label">CNPJ/MEI <span></span></label>
+                                            <div class="col-lg-8 col-xs-8">
+                                                <input class="form-control input-sm mascara-cnpj" maxlength="255"  name="mei" id="mei" tabindex="1">
+                                            </div>
+                                        </div>
+										   <div class="form-group">
+                                            <label class="col-lg-3 col-xs-3 control-label">Função <span></span></label>
+                                            <div class="col-lg-8 col-xs-8">
+                                                <input class="form-control input-sm" maxlength="255"  name="funcao" id="funcao" tabindex="1">
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                         <label class="col-lg-3 col-xs-3 control-label">CNH<span>*</span></label>
+                                         <label class="col-lg-3 col-xs-3 control-label">CNH<span></span></label>
                                             <div class="col-lg-3 col-xs-3">
-                                                 <input class="form-control input-sm" maxlength="255" required type="text" tabindex="1" name="cnh" id="cnh">
+                                                 <input class="form-control input-sm" maxlength="255"  type="text" tabindex="1" name="cnh" id="cnh">
 
                                             </div>
 
-                                            <label for="" class="col-lg-2 col-xs-2 control-label">Vencimento <span>*</span></label>
+                                            <label for="" class="col-lg-2 col-xs-2 control-label">Vencimento <span></span></label>
                                             <div class="col-lg-3 col-xs-3">
-                                                <input type="text" required class="form-control input-sm mascara-data datepicker" placeholder="DD/MM/AAAA" maxlength="10" name="vencimentocnh" id="vencimentocnh" tabindex="1">
+                                                <input type="text" class="form-control input-sm mascara-data datepicker" placeholder="DD/MM/AAAA" maxlength="10" name="vencimentocnh" id="vencimentocnh" tabindex="1">
                                             </div>
 
                                         </div>
@@ -108,8 +119,8 @@
 
                                             </div>
 
-                                             <label class="col-lg-2 col-xs-2 control-label">Cidade<span></span></label>
-                                            <div class="col-lg-3 col-xs-3">
+                                             <label class="col-lg-1 col-xs-1 control-label">Cidade<span></span></label>
+                                            <div class="col-lg-4 col-xs-4">
                                                  <input class="form-control input-sm" maxlength="255" type="text" tabindex="1" name="cidade" id="cidade">
 
                                             </div>
@@ -161,17 +172,17 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-lg-3 col-xs-3 control-label">Veículo<span>*</span></label>
+                                            <label class="col-lg-3 col-xs-3 control-label">Veículo<span></span></label>
                                             <div class="col-lg-8 col-xs-8">
-                                                <input class="form-control input-sm" maxlength="255" required type="text" tabindex="1" name="veiculo" id="veiculo">
+                                                <input class="form-control input-sm" maxlength="255"  type="text" tabindex="1" name="veiculo" id="veiculo">
                                             </div>
 
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-lg-3 col-xs-3 control-label">Placa<span>*</span></label>
+                                            <label class="col-lg-3 col-xs-3 control-label">Placa<span></span></label>
                                             <div class="col-lg-3 col-xs-3">
-                                                 <input class="form-control input-sm " maxlength="255" required type="text" tabindex="1" name="placa" id="placa">
+                                                 <input class="form-control input-sm " maxlength="255"  type="text" tabindex="1" name="placa" id="placa">
 
                                             </div>
 
@@ -248,7 +259,7 @@
 
                                     <div class="form-group">
 
-                                        <label class="col-lg-5 col-xs-5 col-lg-offset-1 col-xs-offset-1">Tipo Documento</label>
+                                        <label class="col-lg-5 col-xs-5 col-lg-offset-1 col-xs-offset-1">Tipo de Documento</label>
                                         <label class="col-lg-5 col-xs-5">Arquivo</label>
 
                                     </div>

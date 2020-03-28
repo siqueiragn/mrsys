@@ -50,6 +50,8 @@
     <script src="<?php echo site_url('/assets/js/jquery.min.js');?>"></script>
     <script type="text/javascript" src="<?php echo site_url('/assets/js/jquery.validationEngine.js');?>"></script>
     <script type="text/javascript" src="<?php echo site_url('/assets/js/jquery.validationEngine-pt_BR.js');?>"></script>
+    <script src="<?php echo site_url('/assets/js/alertify.min.js');?>"></script>
+
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo site_url('/assets/js/bootstrap.js');?>"></script>
@@ -106,7 +108,13 @@
                         <li>
                             <a href="<?php echo site_url('funcionarios/listar');?>">Funcionários</a>
                         </li>
+						<li>
+                            <a href="<?php echo site_url('servicos/listar');?>">Serviços</a>
+                        </li>
                     </ul>
+                </li>
+                <li>
+                    <a href="<?php echo site_url('missoes/listar');?>" class="menu-link" title="Cadastros Básicos">Missões</a>
                 </li>
             </ul>
 

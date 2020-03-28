@@ -8,7 +8,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading text-right hidden-print">
 
-                    <a href="<?php echo site_url($this->router->class .'/cadastrar');?>" class="btn btn-sm btn-default">Novo Funcionário</a>
+                    <a href="<?php echo site_url($this->router->class .'/cadastrar');?>" class="btn btn-sm btn-default">Nova Missão</a>
 
 				</div>
                 <br class="clear">
@@ -49,8 +49,9 @@
 				<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
 					<tr>
                         <th class="col-lg-1">Ações</th>
-                        <th>Nome</th>
-                        <th>CPF</th>
+                        <th>ID</th>
+                        <th>Data Inicio</th>
+                        <th>Data Final</th>
                     </tr>
                     <?php
 
@@ -61,8 +62,9 @@
                             <a href="<?php echo site_url($this->router->class.'/editar/'.$linha->id); ?>" class="btn btn-primary btn-sm" title="Editar">Editar</a>
 
                         </td>
-					    <td><?php echo $linha->nome;?> </td>
-					    <td><?php echo converter_cpf($linha->cpf);?> </td>
+					    <td><?php echo $linha->id;?> </td>
+					    <td><?php echo $linha->data_hora_inicial;?> </td>
+					    <td><?php echo $linha->data_hora_final;?> </td>
 					</tr>
                     <?php } ?>
 					</table>

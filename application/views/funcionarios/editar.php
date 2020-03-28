@@ -7,8 +7,11 @@
                             <form role="form" method="POST" action="<?php echo site_url($this->router->class . '/DB?acao=atz&cd='. $objeto->id);?>" enctype="multipart/form-data">
 
                                     <div class="panel panel-default">
-
+										<div class="panel-heading text-left hidden-print">
+										<h4>Dados do Funcionário</h4>
+										</div>
                                         <div class="panel-body text-center">
+
 
                                             <div class="form-group">
                                                 <div class="col-lg-8 col-xs-8" >
@@ -23,7 +26,10 @@
                                                     <a href="<?php echo site_url($this->router->class . '/listar');?>" class="btn btn-sm btn-default">Listar <i class="fa fa-arrow-left"></i></a>
 
                                                 </div>
+												
+									
                                             </div>
+									
 
                                             <div class="form-etapa-1">
                                                 <div class="col-lg-8 col-xs-8 section-1">
@@ -56,23 +62,34 @@
                                                             <input type="text" required class="form-control input-sm mascara-data datepicker" placeholder="DD/MM/AAAA" maxlength="10" name="data_nascimento" id="data_nascimento" tabindex="1" value="<?php echo $objeto->nascimento;?>">
                                                         </div>
 
-                                                        <label for="" class="col-lg-2 col-xs-2 control-label">Contratação <span>*</span></label>
+                                                        <label for="" class="col-lg-2 col-xs-2 control-label">Contratação <span></span></label>
                                                         <div class="col-lg-3 col-xs-3">
                                                             <input type="text" required class="form-control input-sm mascara-data datepicker" placeholder="DD/MM/AAAA" maxlength="10" name="contratacao" id="contratacao" tabindex="1" value="<?php echo $objeto->contratacao;?>">
                                                         </div>
 
                                                     </div>
-
+													  <div class="form-group">
+                                                        <label class="col-lg-3 col-xs-3 control-label">CNPJ/MEI <span></span></label>
+                                                        <div class="col-lg-8 col-xs-8">
+                                                            <input class="form-control input-sm" maxlength="255"  name="mei" id="mei" tabindex="1" value="<?php echo $objeto->mei;?>">
+                                                        </div>
+                                                    </div>
+													  <div class="form-group">
+                                                        <label class="col-lg-3 col-xs-3 control-label">Função <span></span></label>
+                                                        <div class="col-lg-8 col-xs-8">
+                                                            <input class="form-control input-sm" maxlength="255"  name="funcao" id="funcao" tabindex="1" value="<?php echo $objeto->funcao;?>">
+                                                        </div>
+                                                    </div>
                                                     <div class="form-group">
-                                                     <label class="col-lg-3 col-xs-3 control-label">CNH<span>*</span></label>
+                                                     <label class="col-lg-3 col-xs-3 control-label">CNH<span></span></label>
                                                         <div class="col-lg-3 col-xs-3">
-                                                             <input class="form-control input-sm" maxlength="255" required type="text" tabindex="1" name="cnh" id="cnh"value="<?php echo $objeto->cnh;?>">
+                                                             <input class="form-control input-sm" maxlength="255"  type="text" tabindex="1" name="cnh" id="cnh"value="<?php echo $objeto->cnh;?>">
 
                                                         </div>
 
-                                                        <label for="" class="col-lg-2 col-xs-2 control-label">Vencimento <span>*</span></label>
+                                                        <label for="" class="col-lg-2 col-xs-2 control-label">Vencimento <span></span></label>
                                                         <div class="col-lg-3 col-xs-3">
-                                                            <input type="text" required class="form-control input-sm mascara-data datepicker" placeholder="DD/MM/AAAA" maxlength="10" name="vencimentocnh" id="vencimentocnh" tabindex="1" value="<?php echo $objeto->vencimentocnh;?>">
+                                                            <input type="text" class="form-control input-sm mascara-data datepicker" placeholder="DD/MM/AAAA" maxlength="10" name="vencimentocnh" id="vencimentocnh" tabindex="1" value="<?php echo $objeto->vencimentocnh;?>">
                                                         </div>
 
                                                     </div>
@@ -108,8 +125,8 @@
 
                                                         </div>
 
-                                                        <label class="col-lg-2 col-xs-2 control-label">Cidade<span></span></label>
-                                                        <div class="col-lg-3 col-xs-3">
+                                                        <label class="col-lg-1 col-xs-1 control-label">Cidade<span></span></label>
+                                                        <div class="col-lg-4 col-xs-4">
                                                              <input class="form-control input-sm" maxlength="255" type="text" tabindex="1" name="cidade" id="cidade" value="<?php echo $objeto->cidade;?>">
 
                                                         </div>
@@ -195,7 +212,7 @@
                                                              <select class="form-control input-sm" tabindex="1" name="rastreador" id="rastreador">
                                                              <option value=""></option>
                                                              <option value="0"<?php if ( $objeto->rastreador == '0' ) echo "selected"; ?>>Não</option>
-                                                             <option value="1"<?php if ( $objeto->tastreador == '1' ) echo "selected"; ?>>Sim</option>
+                                                             <option value="1"<?php if ( $objeto->rastreador == '1' ) echo "selected"; ?>>Sim</option>
                                                              </select>
                                                         </div>
 
@@ -269,7 +286,7 @@
                                             <div class="form-etapa-2 aba-area">
                                                 <div class="form-group">
 
-                                                    <label class="col-lg-5 col-xs-5 col-lg-offset-1 col-xs-offset-1">Tipo Documento</label>
+                                                    <label class="col-lg-5 col-xs-5 col-lg-offset-1 col-xs-offset-1">Tipo de Documento</label>
                                                     <label class="col-lg-5 col-xs-5">Arquivo</label>
 
                                                 </div>
