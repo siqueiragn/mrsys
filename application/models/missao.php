@@ -6,13 +6,24 @@ class Missao extends CI_Model  {
 
     function getByID( $codigo ) {
 
-        return $this->db->select('*')
-                        ->where("id = $codigo")
-                        ->get($this->table);
+        return $this->db->query("SELECT M.ID AS missao_id,
+		                                M.*,
+		                                S.ID as servico_id,
+		                                S.*,
+		                                M.KM_FINAL - M.KM_INICIAL AS km_diferenca,
+		                                ((M.KM_FINAL - M.KM_INICIAL) - S.FRANQUIAKM) * CAST(REPLACE(S.EXTRAKM, ',', '.') AS DECIMAL(12,2))  AS total_km_extra,
+		                                ((M.KM_FINAL - M.KM_INICIAL) - S.FRANQUIAKM)  AS qtd_total_km_extra,
+		                                TIMESTAMPDIFF(HOUR, STR_TO_DATE(M.DATA_HORA_INICIAL, '%d/%m/%Y %h:%i'), STR_TO_DATE(M.DATA_HORA_FINAL, '%d/%m/%Y %h:%i')) AS hora_diferenca,
+		                                ((TIMESTAMPDIFF(HOUR, STR_TO_DATE(M.DATA_HORA_INICIAL, '%d/%m/%Y %h:%i'), STR_TO_DATE(M.DATA_HORA_FINAL, '%d/%m/%Y %h:%i'))) - S.FRANQUIAHORA) * CAST(REPLACE(S.EXTRAHORA, ',', '.') AS DECIMAL(12,2))  AS total_hora_extra,
+		                                ((TIMESTAMPDIFF(HOUR, STR_TO_DATE(M.DATA_HORA_INICIAL, '%d/%m/%Y %h:%i'), STR_TO_DATE(M.DATA_HORA_FINAL, '%d/%m/%Y %h:%i'))) - S.FRANQUIAHORA)  AS qtd_total_hora_extra
+                                   FROM MISSOES M 
+                             INNER JOIN SERVICOS S 
+                                     ON M.SERVICO = S.ID 
+                                  WHERE M.ID = $codigo");
 
     }
 
-    function salvar( $cliente, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $endereco, $feriado, $agente, $agente_aux, $usuario ){
+    function salvar( $agente, $agente_aux, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $destino, $feriado, $usuario ){
 
         $data = array(
             'data_hora_inicial'   => $data_hora_inicio,
@@ -22,11 +33,10 @@ class Missao extends CI_Model  {
             'motorista'           => $motorista,
             'placa'               => $placa,
             'destino'             => $local,
-            'endereco'            => $endereco,
+            'endereco'            => $destino,
             'agente'              => $agente,
             'agente2'             => $agente_aux,
             'servico'             => $servico,
-            'cliente'             => $cliente,
             'feriado'             => $feriado,
             'usuario'             => $usuario,
             'status'              => 0,
@@ -37,7 +47,7 @@ class Missao extends CI_Model  {
     }
 
 
-    function atualizar($id, $cliente, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $endereco, $feriado, $agente, $agente_aux, $usuario ) {
+    function atualizar($id, $agente, $agente_aux, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $destino, $feriado, $usuario ) {
 
         $data = array(
             'data_hora_inicial'   => $data_hora_inicio,
@@ -47,20 +57,19 @@ class Missao extends CI_Model  {
             'motorista'           => $motorista,
             'placa'               => $placa,
             'destino'             => $local,
-            'endereco'            => $endereco,
+            'endereco'            => $destino,
             'agente'              => $agente,
             'agente2'             => $agente_aux,
             'servico'             => $servico,
-            'cliente'             => $cliente,
             'feriado'             => $feriado,
             'usuario'             => $usuario,
-            'status'              => 0,
         );
 
         $this->db->where('id', $id);
         $this->db->update($this->table, $data);
 
     }
+
     function getAllByUsername( $Charactername ) {
 
             return $this->db->select('*')
@@ -73,7 +82,7 @@ class Missao extends CI_Model  {
     function getAll() {
 
             return $this->db->select('*')
-                            ->order_by('ID')
+                            ->order_by('id')
                             ->get($this->table);
 
     }

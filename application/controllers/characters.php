@@ -19,7 +19,7 @@ class Characters extends MY_Controller {
         if ( $data['objeto']->num_rows() == 3 ) {
             redirect($this->router->class . '/listar?msg=8002');
         } else {
-            $this->load->view('estruturas/topo_ucp');
+            $this->load->view('estruturas/header');
             $this->load->view($this->router->class . '/cadastrar');
         }
 	}
@@ -32,7 +32,7 @@ class Characters extends MY_Controller {
 
         if ($data['objeto']) {
 
-            $this->load->view('estruturas/topo_ucp');
+            $this->load->view('estruturas/header');
 
             switch ($data['objeto']->STATUS) {
                 case 0:
@@ -46,7 +46,7 @@ class Characters extends MY_Controller {
                     break;
             }
 
-            $this->load->view('estruturas/rodape_ucp');
+            $this->load->view('estruturas/footer');
         } else {
             redirect( $this->router->class . '/listar?msg=8001');
         }
@@ -54,7 +54,7 @@ class Characters extends MY_Controller {
 
 	public function listar()
     {
-        $this->load->view('estruturas/topo_ucp');
+        $this->load->view('estruturas/header');
 
         $this->load->model('character');
 
@@ -68,7 +68,7 @@ class Characters extends MY_Controller {
 	{
         if ($this->nativesession->get('admin') > 0 ) {
 
-            $this->load->view('estruturas/topo_ucp');
+            $this->load->view('estruturas/header');
 
             $this->load->model('character');
 
@@ -85,7 +85,7 @@ class Characters extends MY_Controller {
 	{
 
 	    if ($this->nativesession->get('admin') > 0 ) {
-            $this->load->view('estruturas/topo_ucp');
+            $this->load->view('estruturas/header');
 
             $this->load->model('character');
 

@@ -15,12 +15,8 @@ class Ucp extends MY_Controller {
     public function home()
     {
 
-        $this->load->model('NewsModel');
-
-        $data['noticias'] = $this->NewsModel->listar(true);
-
-        $this->load->view('estruturas/topo_ucp');
-        $this->load->view('estruturas/home_ucp', $data);
+        $this->load->view('estruturas/header');
+        $this->load->view('estruturas/home');
     }
 
     public function login() {
@@ -28,11 +24,9 @@ class Ucp extends MY_Controller {
 
         $this->load->model('NewsModel');
 
-        $data['noticias'] = $this->NewsModel->listar(true);
-
         if (!$this->nativesession->get('autenticado')) {
-            $this->load->view('estruturas/topo');
-            $this->load->view('estruturas/home', $data);
+            $this->load->view('estruturas/header');
+            $this->load->view('estruturas/home');
         } else {
             redirect( 'ucp/home?error=1');
         }
@@ -58,40 +52,6 @@ class Ucp extends MY_Controller {
             }
 
             redirect( $this->router->class . '/home');
-
-        }
-
-    }
-
-    public function dbRegister() {
-
-        if ($this->input->post()) {
-
-            $user  = $this->input->post('user');
-            $pass  = $this->input->post('pass');
-            $passC = $this->input->post('confirmpass');
-            $email = $this->input->post('email');
-
-            $this->load->model('User');
-
-            if ($passC == $pass ) {
-
-                if (!empty($email) && !empty($user)) {
-
-                    loginTemporario($user, $email, $pass);
-                    $this->load->model('User');
-
-                    $this->User->register($this->nativesession->get('user'), $this->nativesession->get('email'), $this->nativesession->get('pass'), $this->dados_globais['stamp']);
-                    $result = $this->User->authMe($this->nativesession->get('user'), $this->nativesession->get('pass'));
-                    if ($result) {
-                        setLoginData($result->row());
-                        destruirTemporario();
-                        redirect($this->router->class . '/home');
-                    }
-                }
-
-            }
-            redirect($this->router->class . '/registrar?error=1');
 
         }
 
@@ -145,7 +105,7 @@ class Ucp extends MY_Controller {
 
         if (!$this->nativesession->get('autenticado')) {
 
-            $this->load->view('estruturas/topo');
+            $this->load->view('estruturas/header');
             $this->load->view('estruturas/registrar');
 
         } else {
@@ -156,7 +116,7 @@ class Ucp extends MY_Controller {
 
     function forgotPass() {
 
-        $this->load->view('estruturas/topo');
+        $this->load->view('estruturas/header');
         $this->load->view('estruturas/forgotPass');
 
     }

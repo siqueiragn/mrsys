@@ -13,24 +13,34 @@ class Servico extends CI_Model  {
     }
 
 
-    function salvar($nome, $valor, $franquiahora, $franquiakm, $valorhora, $valorkm, $custo, $salario, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno){
+    function salvar( $nome, $franquiahora, $valorhora, $cliente, $franquiakm, $valorkm, $extrahora, $extrakm, $pernoite, $batida, $domfer, $deslocamentorj, $deslocamentointerestadual, $pedagio, $valor_pago_agente, $valor_extra_agente, $valor_km_agente, $valor_pernoite_agente, $valor_deslocamentos_agente, $valor_adicional_agente, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno ){
 
         $data = array(
-            'nome'         => $nome,
-            'valor'           => $valor,
-            'franquiahora'              => $franquiahora,
-            'franquiakm'      => $franquiakm,
-            'valorhora'           => $valorhora,
-			'valorkm'           => $valorkm,
-            'custo'        => $custo,
-			'salario'         => $salario,
-            'combustivel'           => $combustivel,
-            'alimentacao'              => $alimentacao,
-            'periculosidade'      => $periculosidade,
-            'auxveiculo'           => $auxveiculo,
-            'addnoturno'        => $addnoturno,
-			
-		
+            'nome'                       => $nome,
+            'franquiahora'               => $franquiahora,
+            'valorhora'                  => $valorhora,
+            'cliente'                    => $cliente,
+            'franquiakm'                 => $franquiakm,
+            'valorkm'                    => $valorkm,
+            'extrahora'                  => $extrahora,
+            'extrakm'                    => $extrakm,
+            'pernoite'                   => $pernoite,
+            'batida'                     => $batida,
+            'domfer'                     => $domfer,
+            'deslocamentorj'             => $deslocamentorj,
+            'deslocamentointerestadual'  => $deslocamentointerestadual,
+            'pedagio'                    => $pedagio,
+            'valor_pago_agente'          => $valor_pago_agente,
+            'valor_extra_agente'         => $valor_extra_agente,
+            'valor_km_agente'            => $valor_km_agente,
+            'valor_pernoite_agente'      => $valor_pernoite_agente,
+            'valor_deslocamentos_agente' => $valor_deslocamentos_agente,
+            'valor_adicional_agente'     => $valor_adicional_agente,
+            'combustivel'                => $combustivel,
+            'alimentacao'                => $alimentacao,
+            'periculosidade'             => $periculosidade,
+            'auxveiculo'                 => $auxveiculo,
+            'addnoturno'                 => $addnoturno,
         );
 
         $this->db->insert($this->table, $data);
@@ -38,25 +48,34 @@ class Servico extends CI_Model  {
     }
 
 
-    function atualizar($id, $nome, $valor, $franquiahora, $franquiakm, $valorhora, $valorkm, $custo, $salario, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno, $domfer) {
+    function atualizar($id, $nome, $franquiahora, $valorhora, $cliente, $franquiakm, $valorkm, $extrahora, $extrakm, $pernoite, $batida, $domfer, $deslocamentorj, $deslocamentointerestadual, $pedagio, $valor_pago_agente, $valor_extra_agente, $valor_km_agente, $valor_pernoite_agente, $valor_deslocamentos_agente, $valor_adicional_agente, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno ){
 
         $data = array(
-            'nome'         => $nome,
-            'valor'           => $valor,
-            'franquiahora'              => $franquiahora,
-            'franquiakm'      => $franquiakm,
-            'valorhora'           => $valorhora,
-			'valorkm'           => $valorkm,
-            'custo'        => $custo,
-			'salario'         => $salario,
-            'combustivel'           => $combustivel,
-            'alimentacao'              => $alimentacao,
-            'periculosidade'      => $periculosidade,
-            'auxveiculo'           => $auxveiculo,
-            'addnoturno'        => $addnoturno,
-			'domfer'        => $domfer,
-			
-		
+            'nome'                       => $nome,
+            'franquiahora'               => $franquiahora,
+            'valorhora'                  => $valorhora,
+            'cliente'                    => $cliente,
+            'franquiakm'                 => $franquiakm,
+            'valorkm'                    => $valorkm,
+            'extrahora'                  => $extrahora,
+            'extrakm'                    => $extrakm,
+            'pernoite'                   => $pernoite,
+            'batida'                     => $batida,
+            'domfer'                     => $domfer,
+            'deslocamentorj'             => $deslocamentorj,
+            'deslocamentointerestadual'  => $deslocamentointerestadual,
+            'pedagio'                    => $pedagio,
+            'valor_pago_agente'          => $valor_pago_agente,
+            'valor_extra_agente'         => $valor_extra_agente,
+            'valor_km_agente'            => $valor_km_agente,
+            'valor_pernoite_agente'      => $valor_pernoite_agente,
+            'valor_deslocamentos_agente' => $valor_deslocamentos_agente,
+            'valor_adicional_agente'     => $valor_adicional_agente,
+            'combustivel'                => $combustivel,
+            'alimentacao'                => $alimentacao,
+            'periculosidade'             => $periculosidade,
+            'auxveiculo'                 => $auxveiculo,
+            'addnoturno'                 => $addnoturno,
         );
         $this->db->where('id', $id);
         $this->db->update($this->table, $data);

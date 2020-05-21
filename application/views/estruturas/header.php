@@ -49,6 +49,7 @@
     <!-- jQuery -->
     <script src="<?php echo site_url('/assets/js/jquery.min.js');?>"></script>
     <script type="text/javascript" src="<?php echo site_url('/assets/js/jquery.validationEngine.js');?>"></script>
+    <script type="text/javascript" src="<?php echo site_url('/assets/js/jquery.maskMoney.js');?>"></script>
     <script type="text/javascript" src="<?php echo site_url('/assets/js/jquery.validationEngine-pt_BR.js');?>"></script>
     <script src="<?php echo site_url('/assets/js/alertify.min.js');?>"></script>
 
@@ -74,10 +75,6 @@
     <script src="<?php echo site_url('/assets/js/mascaras.js');?>"></script>
     <script src="<?php echo site_url('/assets/js/load-mascaras.js');?>"></script>
 
-     <script>
-        $('.datepicker').datetimepicker({useCurrent: false, format: 'DD/MM/YYYY',locale: 'pt-br',tooltips:{today: 'Ir para hoje', clear: 'Limpar', close: 'Fechar', selectMonth: 'Selecionar Mês', prevMonth: 'Mês Anterior', nextMonth: 'Próximo Mês', selectYear: 'Selecionar Ano', prevYear: 'Ano Anterior', nextYear: 'Próximo Ano', selectDecade: 'Selecionar Década', prevDecade: 'Década Anterior', nextDecade: 'Próxima Década'}});
-    </script>
-
 </head>
 
 <body>
@@ -93,12 +90,13 @@
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav ">
+            <ul class="nav navbar-nav " style=" margin-top: 8px;">
                 <li>
                     <a href="<?php echo site_url();?>">
                     MRSys
                     </a>
                 </li>
+                <?php if ($this->nativesession->get('autenticado')) { ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle menu-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Cadastros Básicos">Cadastros<span class="caret"></span></a>
                     <ul class="dropdown-menu multi-level">
@@ -116,7 +114,49 @@
                 <li>
                     <a href="<?php echo site_url('missoes/listar');?>" class="menu-link" title="Cadastros Básicos">Missões</a>
                 </li>
+                <?php } ?>
             </ul>
+
+            <div class="navbar-form navbar-right" style="margin-bottom: 0;  margin-top: 8px;">
+
+                <?php if (!$this->nativesession->get('autenticado')) { ?>
+                <form  method="POST" class="login-input-group hidden" action="<?php echo site_url($this->router->class . '/dbAuthme');?>">
+
+                    <div class="col-lg-5 col-xs-5" style="height: 30px;">
+                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                            <span class="input-group-addon" id="sizing-addon3"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                            <input type="text" class="form-control" required name="user" placeholder="Usuário" aria-describedby="sizing-addon3">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-xs-5" style="height: 30px;">
+                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                            <span class="input-group-addon" id="sizing-addon4"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+                            <input type="password" class="form-control" required placeholder="Senha" name="pass" aria-describedby="sizing-addon4">
+                        </div>
+                    </div>
+                    <button class="btn btn btn-primary" type="submit"><i class="fa fa-chevron-right"></i></button>
+
+                </form>
+
+                <div class="row register-input-group" style="margin-bottom: 8px;">
+
+                    <div class="col-lg-6 col-xs-6">
+                        <button class="btn btn-sm btn-default" onclick="login();">Entrar</button>
+                    </div>
+
+                </div>
+
+                <?php } else { ?>
+                <div class="row register-input-group" style="margin-bottom: 8px;">
+
+                    <div class="col-lg-6 col-xs-6">
+                        <a href="<?php echo site_url('/logout');?>" class="btn btn-sm btn-default">Logout</a>
+                    </div>
+
+                </div>
+                <?php } ?>
+
+            </div>
 
         </div>
     </div>

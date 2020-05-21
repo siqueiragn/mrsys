@@ -4,14 +4,14 @@ class News extends MY_Controller {
 
 	public function index()
 	{
-		$this->load->view('estruturas/topo_ucp');
+		$this->load->view('estruturas/header');
 		$this->load->view($this->router->class . '/cadastrar');
 
 	}
 	 
 	public function cadastrar()
 	{
-        $this->load->view('estruturas/topo_ucp');
+        $this->load->view('estruturas/header');
         $this->load->view( $this->router->class . '/cadastrar');
 	}
 
@@ -23,9 +23,9 @@ class News extends MY_Controller {
 
 	    if ( true ) {
 
-            $this->load->view('estruturas/topo_ucp');
+            $this->load->view('estruturas/header');
             $this->load->view( $this->router->class . '/editar', $data);
-            $this->load->view('estruturas/rodape_ucp');
+            $this->load->view('estruturas/footer');
 
 
         }
@@ -33,7 +33,7 @@ class News extends MY_Controller {
 
 	public function listar()
 	{
-        $this->load->view('estruturas/topo_ucp');
+        $this->load->view('estruturas/header');
 
         $this->load->model('newsModel');
 

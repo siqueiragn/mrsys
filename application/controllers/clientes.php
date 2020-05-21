@@ -14,7 +14,7 @@ class Clientes extends MY_Controller {
 
         $this->load->model('cliente');
 
-            $this->load->view('estruturas/topo_ucp');
+            $this->load->view('estruturas/header');
             $this->load->view($this->router->class . '/cadastrar');
 	}
 
@@ -26,11 +26,11 @@ class Clientes extends MY_Controller {
 
         if ($data['objeto']) {
 
-            $this->load->view('estruturas/topo_ucp');
+            $this->load->view('estruturas/header');
 
                     $this->load->view($this->router->class . '/editar', $data);
                     
-            $this->load->view('estruturas/rodape_ucp');
+            $this->load->view('estruturas/footer');
         } else {
             redirect( $this->router->class . '/listar?msg=8001');
         }
@@ -38,7 +38,7 @@ class Clientes extends MY_Controller {
 
 	public function listar()
     {
-        $this->load->view('estruturas/topo_ucp');
+        $this->load->view('estruturas/header');
 
         $this->load->model('cliente');
 
@@ -52,7 +52,7 @@ class Clientes extends MY_Controller {
 	{
         if ($this->nativesession->get('admin') > 0 ) {
 
-            $this->load->view('estruturas/topo_ucp');
+            $this->load->view('estruturas/header');
 
             $this->load->model('character');
 
@@ -69,7 +69,7 @@ class Clientes extends MY_Controller {
 	{
 
 	    if ($this->nativesession->get('admin') > 0 ) {
-            $this->load->view('estruturas/topo_ucp');
+            $this->load->view('estruturas/header');
 
             $this->load->model('character');
 

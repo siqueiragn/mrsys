@@ -56,7 +56,7 @@ class Mails extends MY_Controller {
 
         }
 
-        $this->load->view( 'estruturas/topo' );
+        $this->load->view( 'estruturas/header' );
         $this->load->view( $this->router->class . '/retorno', $data );
     }
 

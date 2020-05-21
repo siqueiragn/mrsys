@@ -1,5 +1,0 @@
-<script>
-
-    $('.fancybox').fancybox();
-
-</script>

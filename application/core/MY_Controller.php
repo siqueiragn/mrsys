@@ -31,17 +31,6 @@ class MY_Controller extends CI_Controller
 
         }
 
-        /* step two, if you have a test before register an user */
-        function loginTemporario( $user, $email, $pass ){
-
-            $CI = get_instance();
-
-            $CI->nativesession->set('user', $user);
-            $CI->nativesession->set('email', $email);
-            $CI->nativesession->set('pass', $pass);
-            $CI->nativesession->set('autenticadoTemporariamente', true);
-
-        }/* step two, if you have a test before register an user */
         function destruirTemporario(){
 
             $CI = get_instance();

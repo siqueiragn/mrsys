@@ -11,19 +11,14 @@
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 				<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-					<tr><th class="col-lg-1">Ações</th><th>Cliente</th></tr>
+					<tr><th class="col-lg-1">Ações</th><th>Serviços</th></tr>
                     <?php
 
 					foreach( $objetos->result() as $i=>$linha) { ?>
 					<tr>
-					<td>
-									<a href="<?php echo site_url($this->router->class.'/editar/'.$linha->id); ?>" class="btn btn-primary btn-sm" title="Editar">Editar</a>
-                                 
-                                    </a>
-
-                                </td>
+					<td><a href="<?php echo site_url($this->router->class.'/editar/'.$linha->id); ?>" class="btn btn-primary btn-sm" title="Editar">Editar</a></td>
 					<td><?php echo $linha->nome;?> </td>
-					</tr>
+ 					</tr>
                     <?php } ?>
 					</table>
 				   

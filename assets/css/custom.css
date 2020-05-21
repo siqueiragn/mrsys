@@ -4,9 +4,8 @@ h2{
     font-size: 40px;
 }
 body{
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-
-    background: url('../images/background.png') no-repeat center center fixed;  background-size: cover;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; 
+    background-color: green;
     cursor: url(/images/cursor.cur), default;
 }
 .text{

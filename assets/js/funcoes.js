@@ -147,9 +147,23 @@ function calcular_km() {
     if ( valor_final < valor_inicial && $('#km_final').val() != '') {
         $('#km_final').val('');
         alertify.alert('<strong>KM Final não pode ser menor que KM Inicial!</strong>');
-    }
+    } else {
 
-    $('#km_total').val(valor_final - valor_inicial);
+        franquia_km = parseInt($("#franquia_km").val());
+        diferenca = valor_final - valor_inicial;
+        if (diferenca > franquia_km) {
+            $('.area-km-extras').removeClass('hidden');
+            quantidade_extra = diferenca - franquia_km;
+            $("#km_extra_valor").val(quantidade_extra * parseFloat(($('#franquia_km_valor_extra').val()).replace(",", ".")));
+            $("#km_extra_quantidade").val(quantidade_extra);
+        } else {
+            $('.area-km-extras').addClass('hidden');
+            $("#km_extra_valor").val('0.00');
+            $("#km_extra_quantidade").val(0);
+        }
+
+        $('#km_total').val(valor_final - valor_inicial);
+    }
 }
 
 function calcular_diferenca_data(data_inicial, data_final) {
@@ -158,8 +172,23 @@ function calcular_diferenca_data(data_inicial, data_final) {
     dataFinal   = moment($(data_final).val(), 'DD/MM/YYYY h:m');
 
     if ( $(data_inicial).val() != '' && $(data_final).val() != '' ) {
-        console.log( Math.abs(dataInicial.diff(dataFinal, 'minutes')) /60  );
-        setTimeout( function() { $("#diferenca_horas").val( (Math.abs(dataInicial.diff(dataFinal, 'minutes')) )/60 ) }, 500);
+
+        setTimeout( function() {
+            diferenca = (Math.abs(dataInicial.diff(dataFinal, 'minutes')) )/60;
+            $("#diferenca_horas").val( diferenca );
+
+            franquia_horas = parseInt($("#franquia_hora").val());
+            if ( diferenca > franquia_horas ) {
+                $('.area-horas-extras').removeClass('hidden');
+                quantidade_extra = diferenca - franquia_horas;
+                $("#hora_extra_valor").val( quantidade_extra * parseFloat(($('#franquia_hora_valor_extra').val()).replace(",", ".")) );
+                $("#hora_extra_quantidade").val( quantidade_extra  );
+            } else {
+                $('.area-horas-extras').addClass('hidden');
+                $("#hora_extra_valor").val('0.00');
+                $("#hora_extra_quantidade").val(0);
+            }
+        }, 500);
     }
 
 }
@@ -178,7 +207,11 @@ function buscar_servico( url ) {
 
                 r = retorno.split('{QUEBRA}');
                 $("#franquia_hora").val(r[0]);
-                $("#franquia_km").val(r[1]);
+                $("#franquia_hora_valor").val(r[1]);
+                $("#franquia_hora_valor_extra").val(r[2]);
+                $("#franquia_km").val(r[3]);
+                $("#franquia_km_valor").val(r[4]);
+                $("#franquia_km_valor_extra").val(r[5]);
 
             },
             error: function(retorno){

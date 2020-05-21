@@ -23,7 +23,7 @@ class Missoes extends MY_Controller {
             $this->load->model('endereco');
             $data['locais'] = $this->endereco->getAll()->result();
 
-            $this->load->view('estruturas/topo_ucp');
+            $this->load->view('estruturas/header');
             $this->load->view($this->router->class . '/cadastrar', $data);
 	}
 
@@ -43,14 +43,10 @@ class Missoes extends MY_Controller {
 
             $this->load->model('servico');
             $data['servicos'] = $this->servico->getAll()->result();
-            $data['servico']  = $this->servico->getByID( $data['objeto']->servico )->row();
 
-            $this->load->model('endereco');
-            $data['locais'] = $this->endereco->getAll()->result();
-
-            $this->load->view('estruturas/topo_ucp');
+            $this->load->view('estruturas/header');
             $this->load->view($this->router->class . '/editar', $data);
-            $this->load->view('estruturas/rodape_ucp');
+            $this->load->view('estruturas/footer');
 
         } else {
             redirect( $this->router->class . '/listar');
@@ -59,7 +55,7 @@ class Missoes extends MY_Controller {
 
 	public function listar()
     {
-        $this->load->view('estruturas/topo_ucp');
+        $this->load->view('estruturas/header');
 
         $this->load->model('missao');
 
@@ -87,33 +83,36 @@ class Missoes extends MY_Controller {
     {
 
         $this->load->model('missao');
-			
-        $cliente          = $this->input->post('cliente');
-        $servico          = $this->input->post('servico');
-        $data_hora_inicio = $this->input->post('data_hora_inicio');
-        $data_hora_final  = $this->input->post('data_hora_final');
-        $km_inicial       = $this->input->post('km_inicial');
-        $km_final         = $this->input->post('km_final');
-        $endereco         = $this->input->post('local');
-        $motorista        = $this->input->post('motorista');
-        $placa            = $this->input->post('placa');
-        $local            = $this->input->post('destino');
-        $feriado          = $this->input->post('feriado') == 'on' ? 1 : 0;
-        $agente           = $this->input->post('agente');
-        $agente_aux       = $this->input->post('agente_aux');
+        $agente                = $this->input->post('agente');
+        $agente_aux            = $this->input->post('agente_aux');
+        $servico               = $this->input->post('servico');
+        $data_hora_inicio      = $this->input->post('data_hora_inicio');
+        $data_hora_final       = $this->input->post('data_hora_final');
+        $diferenca_horas       = $this->input->post('diferenca_horas');
+        $hora_extra_quantidade = $this->input->post('hora_extra_quantidade');
+        $hora_extra_valor      = $this->input->post('hora_extra_valor');
+        $km_inicial            = $this->input->post('km_inicial');
+        $km_final              = $this->input->post('km_final');
+        $km_total              = $this->input->post('km_total');
+        $km_extra_quantidade   = $this->input->post('km_extra_quantidade');
+        $km_extra_valor        = $this->input->post('km_extra_valor');
+        $local                 = $this->input->post('local');
+        $motorista             = $this->input->post('motorista');
+        $placa                 = $this->input->post('placa');
+        $destino               = $this->input->post('destino');
+        $feriado               = $this->input->post('feriado') == 'on' ? 1 : 0;
 
         switch ( $this->input->get('acao')) {
 
                 case 'salvar':
 				
-					//echo pre($this->input->post());exit;
-                    $this->missao->salvar( $cliente, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $endereco, $feriado, $agente, $agente_aux, $this->nativesession->get('userID') );
+                    $this->missao->salvar( $agente, $agente_aux, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $destino, $feriado, $this->nativesession->get('userID') );
 
                 break;
                 case 'atz':
 
 					$id = $this->input->get('id');
-                    $this->missao->atualizar( $cliente, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $endereco, $feriado, $agente, $agente_aux, $this->nativesession->get('userID') );
+                    $this->missao->atualizar( $id, $agente, $agente_aux, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $destino, $feriado, $this->nativesession->get('userID'));
 
                 break;
 
@@ -126,7 +125,7 @@ class Missoes extends MY_Controller {
     {
         $this->load->model('servico');
         $servico = $this->servico->getByID($this->input->post('servico'))->row();
-        echo "$servico->franquiahora{QUEBRA}$servico->franquiakm";
+        echo "$servico->franquiahora{QUEBRA}$servico->valorhora{QUEBRA}$servico->extrahora{QUEBRA}$servico->franquiakm{QUEBRA}$servico->valorkm{QUEBRA}$servico->extrakm";
 
     }
 

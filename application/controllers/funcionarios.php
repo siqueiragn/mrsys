@@ -14,7 +14,7 @@ class Funcionarios extends MY_Controller {
 
         $this->load->model('funcionario');
 
-            $this->load->view('estruturas/topo_ucp');
+            $this->load->view('estruturas/header');
             $this->load->view($this->router->class . '/cadastrar');
 	}
 
@@ -29,9 +29,9 @@ class Funcionarios extends MY_Controller {
             $this->load->model('documento');
             $data['documentos'] = $this->documento->getAllByFunc( $this->uri->segment(3) )->result();
 
-            $this->load->view('estruturas/topo_ucp');
+            $this->load->view('estruturas/header');
             $this->load->view($this->router->class . '/editar', $data);
-            $this->load->view('estruturas/rodape_ucp');
+            $this->load->view('estruturas/footer');
         } else {
             redirect( $this->router->class . '/listar?msg=8001');
         }
@@ -39,7 +39,7 @@ class Funcionarios extends MY_Controller {
 
 	public function listar()
     {
-        $this->load->view('estruturas/topo_ucp');
+        $this->load->view('estruturas/header');
 
         $this->load->model('funcionario');
 
