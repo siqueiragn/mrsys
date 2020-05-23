@@ -52,6 +52,7 @@
                         <th>ID</th>
                         <th>Data Inicio</th>
                         <th>Data Final</th>
+                        <th>Status</th>
                     </tr>
                     <?php
 
@@ -65,6 +66,7 @@
 					    <td><?php echo $linha->id;?> </td>
 					    <td><?php echo $linha->data_hora_inicial;?> </td>
 					    <td><?php echo $linha->data_hora_final;?> </td>
+					    <td><?php echo $linha->status == 0 ? 'PENDENTE' : 'APROVADO';?> </td>
 					</tr>
                     <?php } ?>
 					</table>

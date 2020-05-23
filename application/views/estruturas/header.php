@@ -27,17 +27,13 @@
     <!-- Bootstrap Core CSS -->
     <link rel="icon" href="<?php echo site_url( '/assets/images/favicon.png');?>" type="image/gif" sizes="16x16">
 
-    <link href="<?php echo site_url('/assets/css/bootstrap.css');?>" rel="stylesheet">
-    <link href="<?php echo site_url('/assets/css/custom_ucp.css');?>" rel="stylesheet">
-    <link href="<?php echo site_url('/assets/css/custom_menu.css');?>" rel="stylesheet">
+    <link href="<?php echo site_url('/assets/css/bootstrap.min.css');?>" rel="stylesheet">
+    <link href="<?php echo site_url('/assets/css/custom.css');?>" rel="stylesheet">
     <link href="<?php echo site_url('/assets/css/alertify.min.css');?>" rel="stylesheet">
     <link href="<?php echo site_url('/assets/css/bootstrap-datetimepicker.min.css');?>" rel="stylesheet">
 
     <!-- Fancybox Core CSS -->
     <link href="<?php echo site_url('/assets/css/fancybox.css');?>" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="<?php echo site_url('/assets/css/estilos.less');?>" rel="stylesheet">
 
 	<!-- Custom Fonts -->
 	<link href="<?php echo site_url('/assets/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
@@ -90,7 +86,7 @@
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav " style=" margin-top: 8px;">
+            <ul class="nav navbar-nav menu-principal " style=" margin-top: 8px;">
                 <li>
                     <a href="<?php echo site_url();?>">
                     MRSys
@@ -113,6 +109,33 @@
                 </li>
                 <li>
                     <a href="<?php echo site_url('missoes/listar');?>" class="menu-link" title="Cadastros Básicos">Missões</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Relatórios">Relatórios <span class="caret"></span></a>
+                    <ul class="dropdown-menu ">
+                        <li>
+                            <a href="<?php echo site_url('clientes/listar');?>">Missões Analítico</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('clientes/listar');?>">Missões x Cliente</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('clientes/listar');?>">Despesas por Funcionário</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('clientes/listar');?>">Serviços Custos</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown pull-right">
+                    <a href="#" class="dropdown-toggle menu-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $this->nativesession->get('username');?> <span class="caret"></span></a>
+                    <ul class="dropdown-menu multi-level">
+
+                        <li>
+                            <a href="<?php echo site_url('/logout');?>"><i class="fa fa-sign-out"></i> Logout </a>
+                        </li>
+                    </ul>
                 </li>
                 <?php } ?>
             </ul>
@@ -146,14 +169,6 @@
 
                 </div>
 
-                <?php } else { ?>
-                <div class="row register-input-group" style="margin-bottom: 8px;">
-
-                    <div class="col-lg-6 col-xs-6">
-                        <a href="<?php echo site_url('/logout');?>" class="btn btn-sm btn-default">Logout</a>
-                    </div>
-
-                </div>
                 <?php } ?>
 
             </div>

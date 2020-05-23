@@ -82,3 +82,31 @@ a.but {
     color: #333; /* old IE */
     background-color: #333; /* Modern Browsers */
 }
+
+
+.card {
+    width: 200px;
+    display: inline-flex;
+    margin: 15px;
+}
+
+.card-desc {
+    font-size: 200%;
+}
+
+.card-header{
+    border-bottom: 1px solid black;
+}
+
+.chart-area{
+    display: inline-flex;
+    width: 100%;
+}
+
+.menu-principal {
+    width: 100%;
+}
+
+.dashboard-text {
+    margin-left: 25px;
+}

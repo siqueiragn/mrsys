@@ -20,9 +20,6 @@ class Missoes extends MY_Controller {
             $this->load->model('servico');
             $data['servicos'] = $this->servico->getAll()->result();
 
-            $this->load->model('endereco');
-            $data['locais'] = $this->endereco->getAll()->result();
-
             $this->load->view('estruturas/header');
             $this->load->view($this->router->class . '/cadastrar', $data);
 	}

@@ -15,8 +15,20 @@ class Ucp extends MY_Controller {
     public function home()
     {
 
+        $dados[] = array('NATURA', 25 );
+        $dados[] = array('EMPRESA Y', 5 );
+        $dados[] = array('EMPRESA X', 2 );
+
+        $dadosPie[] = array('MOTOLINKNATURA', 25);
+        $dadosPie[] = array('ESCOLTA Y', 5);
+        $dadosPie[] = array('TRANSPORTE X', 2);
+
+        $data['dados'] = json_encode($dados);
+        $data['dadosPie'] = json_encode($dadosPie);
+
         $this->load->view('estruturas/header');
-        $this->load->view('estruturas/home');
+        $this->load->view('estruturas/home', $data);
+        $this->load->view('estruturas/footer');
     }
 
     public function login() {
@@ -29,6 +41,18 @@ class Ucp extends MY_Controller {
             $this->load->view('estruturas/home');
         } else {
             redirect( 'ucp/home?error=1');
+        }
+
+    }
+
+    public function gerarHash() {
+
+
+        if ( $this->input->get()) {
+            echo "Hash para " . $this->input->get('texto') . "<br>";
+            echo pre(hash('whirlpool', $this->input->get('texto')));
+        } else {
+            echo pre("Use ?texto=string na url para gerar o hash equivalente!");
         }
 
     }
