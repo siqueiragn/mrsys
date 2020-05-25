@@ -23,23 +23,27 @@ class Missao extends CI_Model  {
 
     }
 
-    function salvar( $agente, $agente_aux, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $destino, $feriado, $usuario ){
+    function salvar( $agente, $agente_aux, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $destino, $feriado, $batida_extra, $deslocamento_extra, $pedagio, $pernoite, $usuario ){
 
         $data = array(
-            'data_hora_inicial'   => $data_hora_inicio,
-            'data_hora_final'     => $data_hora_final,
-            'km_inicial'          => $km_inicial,
-            'km_final'            => $km_final,
-            'motorista'           => $motorista,
-            'placa'               => $placa,
-            'destino'             => $local,
-            'endereco'            => $destino,
-            'agente'              => $agente,
-            'agente2'             => $agente_aux,
-            'servico'             => $servico,
-            'feriado'             => $feriado,
-            'usuario'             => $usuario,
-            'status'              => 0,
+            'data_hora_inicial'     => $data_hora_inicio,
+            'data_hora_final'       => $data_hora_final,
+            'km_inicial'            => $km_inicial,
+            'km_final'              => $km_final,
+            'motorista'             => $motorista,
+            'placa'                 => $placa,
+            'destino'               => $local,
+            'endereco'              => $destino,
+            'agente'                => $agente,
+            'agente2'               => $agente_aux,
+            'servico'               => $servico,
+            'cb_feriado'            => $feriado,
+            'cb_batida_extra'       => $batida_extra,
+            'cb_deslocamento_extra' => $deslocamento_extra,
+            'cb_pedagio'            => $pedagio,
+            'cb_pernoite'           => $pernoite,
+            'usuario'               => $usuario,
+            'status'                => 0,
         );
 
         $this->db->insert($this->table, $data);
@@ -47,22 +51,26 @@ class Missao extends CI_Model  {
     }
 
 
-    function atualizar($id, $agente, $agente_aux, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $destino, $feriado, $usuario ) {
+    function atualizar($id, $agente, $agente_aux, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $destino, $feriado, $batida_extra, $deslocamento_extra, $pedagio, $pernoite, $usuario ) {
 
         $data = array(
-            'data_hora_inicial'   => $data_hora_inicio,
-            'data_hora_final'     => $data_hora_final,
-            'km_inicial'          => $km_inicial,
-            'km_final'            => $km_final,
-            'motorista'           => $motorista,
-            'placa'               => $placa,
-            'destino'             => $local,
-            'endereco'            => $destino,
-            'agente'              => $agente,
-            'agente2'             => $agente_aux,
-            'servico'             => $servico,
-            'feriado'             => $feriado,
-            'usuario'             => $usuario,
+            'data_hora_inicial'     => $data_hora_inicio,
+            'data_hora_final'       => $data_hora_final,
+            'km_inicial'            => $km_inicial,
+            'km_final'              => $km_final,
+            'motorista'             => $motorista,
+            'placa'                 => $placa,
+            'destino'               => $local,
+            'endereco'              => $destino,
+            'agente'                => $agente,
+            'agente2'               => $agente_aux,
+            'servico'               => $servico,
+            'cb_feriado'            => $feriado,
+            'cb_batida_extra'       => $batida_extra,
+            'cb_deslocamento_extra' => $deslocamento_extra,
+            'cb_pedagio'            => $pedagio,
+            'cb_pernoite'           => $pernoite,
+            'usuario'               => $usuario,
         );
 
         $this->db->where('id', $id);

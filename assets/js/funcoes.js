@@ -154,7 +154,7 @@ function calcular_km() {
         if (diferenca > franquia_km) {
             $('.area-km-extras').removeClass('hidden');
             quantidade_extra = diferenca - franquia_km;
-            $(".km_extra_valor").val(quantidade_extra * parseFloat(($('#franquia_km_valor_extra').val()).replace(",", ".")));
+            $(".km_extra_valor").val( (quantidade_extra * parseFloat(($('#franquia_km_valor_extra').val()).replace(",", "."))).toFixed(2));
             $(".km_extra_quantidade").val(quantidade_extra);
         } else {
             $('.area-km-extras').addClass('hidden');
@@ -183,8 +183,8 @@ function calcular_diferenca_data() {
             if ( diferenca > franquia_horas ) {
                 $('.area-horas-extras').removeClass('hidden');
                 quantidade_extra = diferenca - franquia_horas;
-                $(".hora_extra_valor").val( quantidade_extra * parseFloat(($('#franquia_hora_valor_extra').val()).replace(",", ".")) );
-                $(".hora_extra_quantidade").val( quantidade_extra  );
+                $(".hora_extra_valor").val( (quantidade_extra * parseFloat(($('#franquia_hora_valor_extra').val()).replace(",", "."))).toFixed(2) );
+                $(".hora_extra_quantidade").val( quantidade_extra.toFixed(2)  );
             } else {
                 $('.area-horas-extras').addClass('hidden');
                 $(".hora_extra_valor").val('0.00');
@@ -208,23 +208,24 @@ function buscar_servico( url ) {
             success: function( retorno ){
 
                 r = retorno.split('{QUEBRA}');
-                $("#franquia_hora").val(r[0]);
-                $("#franquia_hora_valor_extra").val(r[1]);
-                $("#franquia_km").val(r[2]);
-                $("#franquia_km_valor_extra").val(r[3]);
-                $(".valor_franquia").val(r[4]);
-                $('#valor_pago_agente').val(r[5]);
-                $('#valor_extra_agente').val(r[6]);
-                $('#valor_km_agente').val(r[7]);
-                $('#valor_pernoite_agente').val(r[8]);
-                $('#valor_deslocamentos_agente').val(r[9]);
-                $('#valor_adicional_agente').val(r[10]);
+                $("#franquia_hora").val(               r[0]  ? (r[0])   : 0);
+                $("#franquia_hora_valor_extra").val(   r[1]  ? parseFloat(r[1]).toFixed(2)   : 0);
+                $("#franquia_km").val(                 r[2]  ? (r[2])   : 0);
+                $("#franquia_km_valor_extra").val(     r[3]  ? parseFloat(r[3]).toFixed(2)   : 0);
+                $(".valor_franquia").val(              r[4]  ? parseFloat(r[4]).toFixed(2)   : 0);
+                $('#valor_pago_agente').val(           r[5]  ? parseFloat(r[5]).toFixed(2)   : 0);
+                $('#valor_batida_agente').val(         r[6]  ? parseFloat(r[6]).toFixed(2)   : 0);
+                $('#valor_extra_agente').val(          r[7]  ? parseFloat(r[7]).toFixed(2)   : 0);
+                $('#valor_km_agente').val(             r[8]  ? parseFloat(r[8]).toFixed(2)   : 0);
+                $('#valor_pernoite_agente').val(       r[9]  ? parseFloat(r[9]).toFixed(2)   : 0);
+                $('#valor_deslocamentos_agente').val(  r[10] ? parseFloat(r[10]).toFixed(2)  : 0);
+                $('#valor_adicional_agente').val(      r[11] ? parseFloat(r[11]).toFixed(2)  : 0);
 
-                $('.feriado').val(r[11]);
-                $('.batida_extra').val(r[12]);
-                $('.deslocamento_extra').val(r[13]);
-                $('.pedagio').val(r[14]);
-                $('.pernoite').val(r[15]);
+                $('.feriado').val(                     r[12] ? parseFloat(r[12]).toFixed(2)  : 0);
+                $('.batida_extra').val(                r[13] ? parseFloat(r[13]).toFixed(2)  : 0);
+                $('.deslocamento_extra').val(          r[14] ? parseFloat(r[14]).toFixed(2)  : 0);
+                $('.pedagio').val(                     r[15] ? parseFloat(r[15]).toFixed(2)  : 0);
+                $('.pernoite').val(                    r[16] ? parseFloat(r[16]).toFixed(2)  : 0);
 
                 calcular_km();
                 calcular_diferenca_data();
@@ -241,13 +242,17 @@ function buscar_servico( url ) {
 
 function calcular_custo_missao() {
 
-    total = 0;
+    custo       = 0;
+    faturamento = 0;
+
+    faturamento += parseFloat(($('#franquia_missao').val()   ? $('#franquia_missao').val()   : '0,00').replace(',', '.'));
+    custo       += parseFloat(($('#valor_pago_agente').val() ? $('#valor_pago_agente').val() : '0,00').replace(',', '.'));
 
     /* horas extras */
     horas_extras = parseFloat(($('#hora_extra_valor').val() ? $('#hora_extra_valor').val() : '0,00').replace(',', '.'));
     if ( horas_extras != 0) {
         $('.discriminacao-horas-extras').removeClass('hidden');
-        total += horas_extras;
+        faturamento += horas_extras;
     } else {
         $('.discriminacao-horas-extras').addClass('hidden');
     }
@@ -257,7 +262,7 @@ function calcular_custo_missao() {
     km_extras = parseFloat(($('#km_extra_valor').val() ? $('#km_extra_valor').val() : '0,00').replace(',', '.'));
     if ( km_extras != 0) {
         $('.discriminacao-km-extras').removeClass('hidden');
-        total += km_extras;
+        faturamento += km_extras;
     } else {
         $('.discriminacao-km-extras').addClass('hidden');
     }
@@ -269,21 +274,67 @@ function calcular_custo_missao() {
 
     if ($('#pernoite').is(':checked') && (pernoite != 0 || pernoite_agente != 0) ) {
         $('.discriminacao-pernoite').removeClass('hidden');
-        total += pernoite;
-        total += pernoite_agente;
+        faturamento += pernoite;
+        custo       += pernoite_agente;
     } else {
         $('.discriminacao-pernoite').addClass('hidden');
     }
-
     /* ============ */
-    pedagio     = parseFloat(($('#pedagio').is(':checked')     ? $('#pedagio').val()              : '0,00').replace(',', '.'));
+
+
+    /* deslocamento */
+    deslocamento        = parseFloat(($('#deslocamento_extra').is(':checked')     ? $('#deslocamento_extra').val()         : '0,00').replace(',', '.'));
+    deslocamento_agente = parseFloat(($('#valor_deslocamentos_agente').val()      ? $('#valor_deslocamentos_agente').val() : '0,00').replace(',', '.'));
+
+    if ($('#deslocamento_extra').is(':checked') && (deslocamento != 0 || deslocamento_agente != 0) ) {
+        $('.discriminacao-deslocamento').removeClass('hidden');
+        faturamento += deslocamento;
+        custo       += deslocamento_agente;
+    } else {
+        $('.discriminacao-deslocamento').addClass('hidden');
+    }
+    /* ============ */
+
+
+    /* feriado */
+    feriado                = parseFloat(($('#feriado').is(':checked')       ? $('#feriado').val()                : '0,00').replace(',', '.'));
+    valor_adicional_agente = parseFloat(($('#valor_adicional_agente').val() ? $('#valor_adicional_agente').val() : '0,00').replace(',', '.'));
+
+    if ($('#feriado').is(':checked') && (feriado != 0 || valor_adicional_agente != 0) ) {
+        $('.discriminacao-feriado').removeClass('hidden');
+        faturamento += feriado;
+        custo       += valor_adicional_agente;
+    } else {
+        $('.discriminacao-feriado').addClass('hidden');
+    }
+    /* ============ */
+
+
+    /* pedagio */
+    pedagio     = parseFloat(($('#pedagio').is(':checked') ? $('#pedagio').val() : '0,00').replace(',', '.'));
     if ( pedagio != 0 ) {
         $('.discriminacao-pedagio').removeClass('hidden');
-        total += pedagio;
+        faturamento += pedagio;
     } else {
         $('.discriminacao-pedagio').addClass('hidden');
     }
 
-    $('#custo_total_missao').val(total);
+    /* batida extra */
+    batida_extra        = parseFloat(($('#batida_extra').is(':checked') ? $('#batida_extra').val() : '0,00').replace(',', '.'));
+    batida_extra_agente = parseFloat(($('#valor_batida_agente').val() ? $('#valor_batida_agente').val() : '0,00').replace(',', '.'));
+
+    if ( $('#batida_extra').is(':checked') && (batida_extra != 0 || batida_extra_agente != 0)  ) {
+        $('.discriminacao-batida-extra').removeClass('hidden');
+        faturamento += batida_extra;
+        custo       += batida_extra_agente;
+    } else {
+        $('.discriminacao-batida-extra').addClass('hidden');
+    }
+    /* ================ */
+
+
+
+    $('#custo_total_missao').val( (custo.toFixed(2).replace('.', ',')) );
+    $('#faturamento_total_missao').val( (faturamento.toFixed(2).replace('.', ',')) );
 
 }

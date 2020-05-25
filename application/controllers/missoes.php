@@ -131,19 +131,24 @@ class Missoes extends MY_Controller {
         $motorista             = $this->input->post('motorista');
         $placa                 = $this->input->post('placa');
         $destino               = $this->input->post('destino');
-        $feriado               = $this->input->post('feriado') == 'on' ? 1 : 0;
+        $feriado               = $this->input->post('feriado')            ? 1 : 0;
+        $batida_extra          = $this->input->post('batida_extra')       ? 1 : 0;
+        $deslocamento_extra    = $this->input->post('deslocamento_extra') ? 1 : 0;
+        $pedagio               = $this->input->post('pedagio')            ? 1 : 0;
+        $pernoite              = $this->input->post('pernoite')           ? 1 : 0;
+
 
         switch ( $this->input->get('acao')) {
 
                 case 'salvar':
 				
-                    $this->missao->salvar( $agente, $agente_aux, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $destino, $feriado, $this->nativesession->get('userID') );
+                    $this->missao->salvar( $agente, $agente_aux, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $destino, $feriado, $batida_extra, $deslocamento_extra, $pedagio, $pernoite, $this->nativesession->get('userID') );
 
                 break;
                 case 'atz':
 
 					$id = $this->input->get('id');
-                    $this->missao->atualizar( $id, $agente, $agente_aux, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $destino, $feriado, $this->nativesession->get('userID'));
+                    $this->missao->atualizar( $id, $agente, $agente_aux, $servico, $data_hora_inicio, $data_hora_final, $km_inicial, $km_final, $local, $motorista, $placa, $destino, $feriado, $batida_extra, $deslocamento_extra, $pedagio, $pernoite, $this->nativesession->get('userID'));
 
                 break;
 
@@ -156,7 +161,7 @@ class Missoes extends MY_Controller {
     {
         $this->load->model('servico');
         $servico = $this->servico->getByID($this->input->post('servico'))->row();
-        echo "$servico->franquiahora{QUEBRA}$servico->extrahora{QUEBRA}$servico->franquiakm{QUEBRA}$servico->extrakm{QUEBRA}$servico->valor_franquia{QUEBRA}$servico->valor_pago_agente{QUEBRA}$servico->valor_extra_agente{QUEBRA}$servico->valor_km_agente{QUEBRA}$servico->valor_pernoite_agente{QUEBRA}$servico->valor_deslocamentos_agente{QUEBRA}$servico->valor_adicional_agente{QUEBRA}$servico->domfer{QUEBRA}$servico->batida{QUEBRA}$servico->deslocamentorj{QUEBRA}$servico->pedagio{QUEBRA}$servico->pernoite";
+        echo "$servico->franquiahora{QUEBRA}$servico->extrahora{QUEBRA}$servico->franquiakm{QUEBRA}$servico->extrakm{QUEBRA}$servico->valor_franquia{QUEBRA}$servico->valor_pago_agente{QUEBRA}$servico->valor_batida_extra{QUEBRA}$servico->valor_extra_agente{QUEBRA}$servico->valor_km_agente{QUEBRA}$servico->valor_pernoite_agente{QUEBRA}$servico->valor_deslocamentos_agente{QUEBRA}$servico->valor_adicional_agente{QUEBRA}$servico->domfer{QUEBRA}$servico->batida{QUEBRA}$servico->deslocamento{QUEBRA}$servico->pedagio{QUEBRA}$servico->pernoite";
 
     }
 

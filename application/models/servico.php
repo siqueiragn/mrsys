@@ -6,14 +6,12 @@ class Servico extends CI_Model  {
 
     function getByID( $codigo ) {
 
-        return $this->db->select('*')
-                        ->where("id = $codigo")
-                        ->get($this->table);
+        return $this->db->query("SELECT *, CAST(REPLACE(deslocamentorj, ',', '.') AS DECIMAL(12,2)) + CAST(REPLACE(deslocamentointerestadual, ',', '.') AS DECIMAL(12,2)) AS deslocamento FROM SERVICOS WHERE id = $codigo");
 
     }
 
 
-    function salvar( $nome, $franquiahora, $valor_franquia, $cliente, $franquiakm, $extrahora, $extrakm, $pernoite, $batida, $domfer, $deslocamentorj, $deslocamentointerestadual, $pedagio, $valor_pago_agente, $valor_extra_agente, $valor_km_agente, $valor_pernoite_agente, $valor_deslocamentos_agente, $valor_adicional_agente, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno ){
+    function salvar( $nome, $franquiahora, $valor_franquia, $cliente, $franquiakm, $extrahora, $extrakm, $pernoite, $batida, $domfer, $deslocamentorj, $deslocamentointerestadual, $pedagio, $valor_pago_agente, $valor_batida_extra, $valor_extra_agente, $valor_km_agente, $valor_pernoite_agente, $valor_deslocamentos_agente, $valor_adicional_agente, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno ){
 
         $data = array(
             'nome'                       => $nome,
@@ -30,6 +28,7 @@ class Servico extends CI_Model  {
             'deslocamentointerestadual'  => $deslocamentointerestadual,
             'pedagio'                    => $pedagio,
             'valor_pago_agente'          => $valor_pago_agente,
+            'valor_batida_extra'         => $valor_batida_extra,
             'valor_extra_agente'         => $valor_extra_agente,
             'valor_km_agente'            => $valor_km_agente,
             'valor_pernoite_agente'      => $valor_pernoite_agente,
@@ -47,7 +46,7 @@ class Servico extends CI_Model  {
     }
 
 
-    function atualizar($id, $nome, $franquiahora, $valor_franquia, $cliente, $franquiakm, $extrahora, $extrakm, $pernoite, $batida, $domfer, $deslocamentorj, $deslocamentointerestadual, $pedagio, $valor_pago_agente, $valor_extra_agente, $valor_km_agente, $valor_pernoite_agente, $valor_deslocamentos_agente, $valor_adicional_agente, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno ){
+    function atualizar($id, $nome, $franquiahora, $valor_franquia, $cliente, $franquiakm, $extrahora, $extrakm, $pernoite, $batida, $domfer, $deslocamentorj, $deslocamentointerestadual, $pedagio, $valor_pago_agente, $valor_batida_extra, $valor_extra_agente, $valor_km_agente, $valor_pernoite_agente, $valor_deslocamentos_agente, $valor_adicional_agente, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno ){
 
         $data = array(
             'nome'                       => $nome,
@@ -64,6 +63,7 @@ class Servico extends CI_Model  {
             'deslocamentointerestadual'  => $deslocamentointerestadual,
             'pedagio'                    => $pedagio,
             'valor_pago_agente'          => $valor_pago_agente,
+            'valor_batida_extra'         => $valor_batida_extra,
             'valor_extra_agente'         => $valor_extra_agente,
             'valor_km_agente'            => $valor_km_agente,
             'valor_pernoite_agente'      => $valor_pernoite_agente,

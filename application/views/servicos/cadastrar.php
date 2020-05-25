@@ -204,6 +204,14 @@
                                             </div>
 
                                         </div>
+                                        <div class="form-group">
+
+                                            <label class="col-lg-4 col-xs-4 control-label">Valor batida extra pago a agente (R$)</label>
+                                            <div class="col-lg-2 col-xs-2">
+                                                <input type="text" class="form-control input-sm mascara-dinheiro" tabindex="1" name="valor_batida_agente" id="valor_batida_agente" placeholder="0,00">
+                                            </div>
+
+                                        </div>
 
                                     </div>
 

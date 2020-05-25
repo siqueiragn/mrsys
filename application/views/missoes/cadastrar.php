@@ -17,6 +17,7 @@
                                         <li role="presentation" class="active"><a href="#" class="aba-etapa-1 aba-link" id="1">Etapa 1</a></li>
                                         <li role="presentation"><a href="#" class="aba-etapa-2 aba-link" id="2">Etapa 2</a></li>
                                         <li role="presentation" onclick="calcular_custo_missao()"><a href="#" class="aba-etapa-3 aba-link" id="3">Discriminação Custos</a></li>
+                                        <li role="presentation" onclick="calcular_custo_missao()"><a href="#" class="aba-etapa-4 aba-link" id="4">Discriminação Faturamento</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-4 col-xs-4 text-right">
@@ -104,12 +105,11 @@
                                     </div>
                                     <label for="" class="col-lg-2 col-xs-2 control-label">Adicional Hora Extra (R$)</label>
                                     <div class="col-lg-2 col-xs-2">
-                                        <input type="text" class="form-control input-sm somar-total hora_extra_valor" tabindex="1" name="hora_extra_valor" id="hora_extra_valor" readonly>
+                                        <input type="text" class="form-control input-sm somar-total hora_extra_valor text-right" tabindex="1" name="hora_extra_valor" id="hora_extra_valor" readonly>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
-
 
                                     <label for="" class="col-lg-2 col-xs-2 control-label">KM Inicial</label>
                                     <div class="col-lg-2 col-xs-2">
@@ -136,7 +136,7 @@
                                     </div>
                                     <label for="" class="col-lg-2 col-xs-2 control-label">Adicional KM Extra (R$)</label>
                                     <div class="col-lg-2 col-xs-2">
-                                        <input type="text" class="form-control input-sm somar-total km_extra_valor" tabindex="1" name="km_extra_valor" id="km_extra_valor" readonly>
+                                        <input type="text" class="form-control input-sm somar-total km_extra_valor text-right" tabindex="1" name="km_extra_valor" id="km_extra_valor" readonly>
                                     </div>
 
                                 </div>
@@ -197,67 +197,59 @@
                             </div>
                             <div class="form-etapa-3 aba-area">
 
-                                <div class="form-group">
+                                <div class="form-group discriminacao-pernoite hidden">
 
-                                    <label class="col-lg-4 col-xs-4 control-label">Valor pago ao agente (R$)</label>
+                                    <label class="col-lg-4 col-xs-4 control-label">Pernoite pago ao agente (R$)</label>
                                     <div class="col-lg-2 col-xs-2">
-                                        <input type="text" class="form-control input-sm mascara-dinheiro" tabindex="1" name="valor_pago_agente" id="valor_pago_agente" placeholder="0,00">
+                                        <input type="text" class="form-control input-sm text-right" tabindex="1" name="valor_pernoite_agente" id="valor_pernoite_agente" placeholder="0,00" readonly>
+                                    </div>
+
+                                </div>
+                                <div class="form-group discriminacao-deslocamento hidden">
+
+                                    <label class="col-lg-4 col-xs-4 control-label">Deslocamentos pago ao agente (R$)</label>
+                                    <div class="col-lg-2 col-xs-2">
+                                        <input type="text" class="form-control input-sm text-right" tabindex="1" name="valor_deslocamentos_agente" id="valor_deslocamentos_agente" placeholder="0,00" readonly>
+                                    </div>
+
+                                </div>
+                                <div class="form-group discriminacao-feriado">
+
+                                    <label class="col-lg-4 col-xs-4 control-label">Adicional domingos e feriados pago ao agente (R$)</label>
+                                    <div class="col-lg-2 col-xs-2">
+                                        <input type="text" class="form-control input-sm text-right" tabindex="1" name="valor_adicional_agente" id="valor_adicional_agente" placeholder="0,00" readonly>
                                     </div>
 
                                 </div>
                                 <div class="form-group discriminacao-horas-extras hidden">
 
-                                    <label class="ccol-lg-4 col-xs-4 control-label">Valor hora extra pago a agente (R$)</label>
+                                    <label class="ccol-lg-4 col-xs-4 control-label">Hora extra pago ao agente (R$)</label>
                                     <div class="col-lg-2 col-xs-2">
-                                        <input type="text" class="form-control input-sm mascara-dinheiro" tabindex="1" name="valor_extra_agente" id="valor_extra_agente" placeholder="0,00">
+                                        <input type="text" class="form-control input-sm text-right" tabindex="1" name="valor_extra_agente" id="valor_extra_agente" placeholder="0,00" readonly>
                                     </div>
 
                                 </div>
                                 <div class="form-group discriminacao-km-extras hidden">
 
-                                    <label class="col-lg-4 col-xs-4 control-label">Valor km extra pago a agente (R$)</label>
+                                    <label class="col-lg-4 col-xs-4 control-label">KM extra pago ao agente (R$)</label>
                                     <div class="col-lg-2 col-xs-2">
-                                        <input type="text" class="form-control input-sm mascara-dinheiro" tabindex="1" name="valor_km_agente" id="valor_km_agente" placeholder="0,00">
+                                        <input type="text" class="form-control input-sm text-right" tabindex="1" name="valor_km_agente" id="valor_km_agente" placeholder="0,00" readonly>
                                     </div>
 
                                 </div>
-                                <div class="form-group discriminacao-pernoite hidden">
+                                <div class="form-group discriminacao-batida-extra hidden">
 
-                                    <label class="col-lg-4 col-xs-4 control-label">Valor de pernoite pago a agente (R$)</label>
+                                    <label class="col-lg-4 col-xs-4 control-label">Batida extra pago ao agente (R$)</label>
                                     <div class="col-lg-2 col-xs-2">
-                                        <input type="text" class="form-control input-sm mascara-dinheiro" tabindex="1" name="valor_pernoite_agente" id="valor_pernoite_agente" placeholder="0,00">
-                                    </div>
-
-                                </div>
-                                <div class="form-group discriminacao-pernoite hidden">
-
-                                    <label class="col-lg-4 col-xs-4 control-label">Valor de pernoite do serviço (R$)</label>
-                                    <div class="col-lg-2 col-xs-2">
-                                        <input type="text" class="form-control input-sm mascara-dinheiro pernoite" tabindex="1" name="valor_pernoite_servico" id="valor_pernoite_servico" placeholder="0,00">
+                                        <input type="text" class="form-control input-sm text-right" tabindex="1" name="valor_batida_agente" id="valor_batida_agente" placeholder="0,00" readonly>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
 
-                                    <label class="col-lg-4 col-xs-4 control-label">Valor de deslocamentos pago a agente (R$)</label>
+                                    <label class="col-lg-4 col-xs-4 control-label">Pago ao agente (R$)</label>
                                     <div class="col-lg-2 col-xs-2">
-                                        <input type="text" class="form-control input-sm mascara-dinheiro" tabindex="1" name="valor_deslocamentos_agente" id="valor_deslocamentos_agente" placeholder="0,00">
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-
-                                    <label class="col-lg-4 col-xs-4 control-label">Valor adicional domingos e feriados pago a agente (R$)</label>
-                                    <div class="col-lg-2 col-xs-2">
-                                        <input type="text" class="form-control input-sm mascara-dinheiro" tabindex="1" name="valor_adicional_agente" id="valor_adicional_agente" placeholder="0,00">
-                                    </div>
-
-                                </div>
-                                <div class="form-group  discriminacao-pedagio hidden">
-
-                                    <label class="col-lg-4 col-xs-4 control-label">Pedágio (R$)</label>
-                                    <div class="col-lg-2 col-xs-2">
-                                        <input type="text" class="form-control input-sm mascara-dinheiro pedagio" tabindex="1" name="valor_adicional_pedagio" id="valor_adicional_pedagio" placeholder="0,00">
+                                        <input type="text" class="form-control input-sm text-right" tabindex="1" name="valor_pago_agente" id="valor_pago_agente" placeholder="0,00" readonly>
                                     </div>
 
                                 </div>
@@ -265,7 +257,85 @@
 
                                     <label class="col-lg-4 col-xs-4 control-label">Custo Total (R$) </label>
                                     <div class="col-lg-2 col-xs-2">
-                                        <input type="text" class="form-control input-sm" tabindex="1" name="custo_total_missao" id="custo_total_missao" placeholder="0,00" readonly>
+                                        <input type="text" class="form-control input-sm text-right" tabindex="1" name="custo_total_missao" id="custo_total_missao" placeholder="0,00" readonly>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-etapa-4 aba-area">
+
+                                <div class="form-group discriminacao-pernoite hidden">
+
+                                    <label class="col-lg-4 col-xs-4 control-label">Pernoite do serviço (R$)</label>
+                                    <div class="col-lg-2 col-xs-2">
+                                        <input type="text" class="form-control input-sm pernoite text-right" tabindex="1" name="valor_pernoite_servico" id="valor_pernoite_servico" placeholder="0,00" readonly>
+                                    </div>
+
+                                </div>
+                                <div class="form-group discriminacao-deslocamento hidden">
+
+                                    <label class="col-lg-4 col-xs-4 control-label">Deslocamento extra (R$)</label>
+                                    <div class="col-lg-2 col-xs-2">
+                                        <input type="text" class="form-control input-sm deslocamento_extra text-right" tabindex="1" name="valor_deslocamento_extra" id="valor_deslocamento_extra" placeholder="0,00" readonly>
+                                    </div>
+
+                                </div>
+                                <div class="form-group discriminacao-feriado hidden">
+
+                                    <label class="col-lg-4 col-xs-4 control-label">Adicional domingos e feriados (R$)</label>
+                                    <div class="col-lg-2 col-xs-2">
+                                        <input type="text" class="form-control input-sm feriado text-right" tabindex="1" name="valor_adicional_feriado" id="valor_adicional_feriado" placeholder="0,00" readonly>
+                                    </div>
+
+                                </div>
+                                <div class="form-group  discriminacao-pedagio hidden">
+
+                                    <label class="col-lg-4 col-xs-4 control-label">Pedágio (R$)</label>
+                                    <div class="col-lg-2 col-xs-2">
+                                        <input type="text" class="form-control input-sm pedagio text-right" tabindex="1" name="valor_adicional_pedagio" id="valor_adicional_pedagio" placeholder="0,00" readonly>
+                                    </div>
+
+                                </div>
+                                <div class="form-group  discriminacao-batida-extra hidden">
+
+                                    <label class="col-lg-4 col-xs-4 control-label">Batida Extra (R$)</label>
+                                    <div class="col-lg-2 col-xs-2">
+                                        <input type="text" class="form-control input-sm batida_extra text-right" tabindex="1" name="valor_batida_extra" id="valor_batida_extra" placeholder="0,00" readonly>
+                                    </div>
+
+                                </div>
+                                <div class="form-group discriminacao-horas-extras hidden">
+
+                                    <label class="col-lg-4 col-xs-4 control-label">Hora Extra (R$)</label>
+                                    <div class="col-lg-2 col-xs-2">
+                                        <input type="text" class="form-control input-sm somar-total hora_extra_valor text-right" tabindex="1" name="hora_extra_valor_disc" id="hora_extra_valor_disc" readonly>
+                                    </div>
+
+                                </div>
+                                <div class="form-group discriminacao-km-extras hidden">
+
+                                    <label class="col-lg-4 col-xs-4 control-label">KM Extra (R$)</label>
+                                    <div class="col-lg-2 col-xs-2">
+                                        <input type="text" class="form-control input-sm somar-total km_extra_valor text-right" tabindex="1" name="km_extra_valor_disc" id="km_extra_valor_disc" readonly>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+
+                                    <label class="col-lg-4 col-xs-4 control-label">Valor Franquia (R$) </label>
+                                    <div class="col-lg-2 col-xs-2">
+                                        <input type="text" class="form-control input-sm valor_franquia text-right" tabindex="1" name="franquia_missao" id="franquia_missao" placeholder="0,00" readonly>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label class="col-lg-4 col-xs-4 control-label">Faturamento Total (R$) </label>
+                                    <div class="col-lg-2 col-xs-2">
+                                        <input type="text" class="form-control input-sm text-right" tabindex="1" name="faturamento_total_missao" id="faturamento_total_missao" placeholder="0,00" readonly>
                                     </div>
 
                                 </div>
