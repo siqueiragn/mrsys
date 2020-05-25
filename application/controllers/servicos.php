@@ -55,10 +55,9 @@ class Servicos extends MY_Controller {
 
         $nome                       = $this->input->post('nome');
         $franquiahora               = $this->input->post('franquiahora');
-        $valorhora                  = $this->input->post('valorhora');
         $cliente                    = $this->input->post('cliente');
         $franquiakm                 = $this->input->post('franquiakm');
-        $valorkm                    = $this->input->post('valorkm');
+        $valor_franquia             = $this->input->post('valor_franquia');
         $extrahora                  = $this->input->post('extrahora');
         $extrakm                    = $this->input->post('extrakm');
         $pernoite                   = $this->input->post('pernoite');
@@ -83,13 +82,13 @@ class Servicos extends MY_Controller {
 
             case 'salvar':
 
-                $this->servico->salvar( $nome, $franquiahora, $valorhora, $cliente, $franquiakm, $valorkm, $extrahora, $extrakm, $pernoite, $batida, $domfer, $deslocamentorj, $deslocamentointerestadual, $pedagio, $valor_pago_agente, $valor_extra_agente, $valor_km_agente, $valor_pernoite_agente, $valor_deslocamentos_agente, $valor_adicional_agente, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno );
+                $this->servico->salvar( $nome, $franquiahora, $valor_franquia, $cliente, $franquiakm, $extrahora, $extrakm, $pernoite, $batida, $domfer, $deslocamentorj, $deslocamentointerestadual, $pedagio, $valor_pago_agente, $valor_extra_agente, $valor_km_agente, $valor_pernoite_agente, $valor_deslocamentos_agente, $valor_adicional_agente, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno );
 
             break;
             case 'atz':
 
                 $id = $this->input->get('cd');
-                $this->servico->atualizar( $id, $nome, $franquiahora, $valorhora, $cliente, $franquiakm, $valorkm, $extrahora, $extrakm, $pernoite, $batida, $domfer, $deslocamentorj, $deslocamentointerestadual, $pedagio, $valor_pago_agente, $valor_extra_agente, $valor_km_agente, $valor_pernoite_agente, $valor_deslocamentos_agente, $valor_adicional_agente, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno );
+                $this->servico->atualizar( $id, $nome, $franquiahora, $valor_franquia, $cliente, $franquiakm, $extrahora, $extrakm, $pernoite, $batida, $domfer, $deslocamentorj, $deslocamentointerestadual, $pedagio, $valor_pago_agente, $valor_extra_agente, $valor_km_agente, $valor_pernoite_agente, $valor_deslocamentos_agente, $valor_adicional_agente, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno );
 
             break;
 

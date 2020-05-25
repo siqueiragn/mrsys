@@ -99,6 +99,9 @@ class Funcionarios extends MY_Controller {
         if ( $_FILES['avatar']['name'] ) {
             $extensao        = strtolower( pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION) );
             $avatar          = "avatar.$extensao";
+        } else {
+            $avatar = "";
+            $extensao = "";
         }
 
 
@@ -107,7 +110,7 @@ class Funcionarios extends MY_Controller {
                 case 'salvar':
 				
 					//echo pre($this->input->post());exit;
-                    $this->funcionario->salvar($nome, $cpf, $rg, $data_nascimento, $contratacao, $vencimentocnh, $cnh, $pai, $mae, $endereco,$complemento, $cep, $cidade, $tel, $cel, $conta, $banco, $agencia, $tipoconta, $veiculo, $placa, $cor, $ano, $rastreador, $diaria, $salario, $avatar, $funcao, $mei);
+                    $this->funcionario->salvar($nome, $cpf, $rg, $data_nascimento, $contratacao, $vencimentocnh, $cnh, $pai, $mae, $endereco, $complemento, $cep, $cidade, $tel, $cel, $conta, $banco, $agencia, $tipoconta, $veiculo, $placa, $cor, $ano, $rastreador, $diaria, $salario, $avatar, $funcao, $mei);
 
                     $idFunc = $this->db->insert_id();
 
@@ -126,6 +129,7 @@ class Funcionarios extends MY_Controller {
                     foreach ($_FILES['arquivo']['tmp_name'] as $indice=>$file) {
 
                         $extensao = strtolower( pathinfo($_FILES['arquivo']['name'][$indice], PATHINFO_EXTENSION) );
+                        $tipoArquivo = $this->input->post('tipo_documento')[$indice];
 
                         $this->load->model('documento');
                         $this->documento->salvar($extensao, $idFunc);

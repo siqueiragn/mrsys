@@ -70,6 +70,28 @@ class Missao extends CI_Model  {
 
     }
 
+    function aprovar($id) {
+
+        $data = array(
+            'status'   => 1,
+        );
+
+        $this->db->where('id', $id);
+        $this->db->update($this->table, $data);
+
+    }
+
+    function reprovar($id) {
+
+        $data = array(
+            'status'   => 2,
+        );
+
+        $this->db->where('id', $id);
+        $this->db->update($this->table, $data);
+
+    }
+
     function getAllByUsername( $Charactername ) {
 
             return $this->db->select('*')

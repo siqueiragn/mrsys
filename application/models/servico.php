@@ -13,15 +13,14 @@ class Servico extends CI_Model  {
     }
 
 
-    function salvar( $nome, $franquiahora, $valorhora, $cliente, $franquiakm, $valorkm, $extrahora, $extrakm, $pernoite, $batida, $domfer, $deslocamentorj, $deslocamentointerestadual, $pedagio, $valor_pago_agente, $valor_extra_agente, $valor_km_agente, $valor_pernoite_agente, $valor_deslocamentos_agente, $valor_adicional_agente, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno ){
+    function salvar( $nome, $franquiahora, $valor_franquia, $cliente, $franquiakm, $extrahora, $extrakm, $pernoite, $batida, $domfer, $deslocamentorj, $deslocamentointerestadual, $pedagio, $valor_pago_agente, $valor_extra_agente, $valor_km_agente, $valor_pernoite_agente, $valor_deslocamentos_agente, $valor_adicional_agente, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno ){
 
         $data = array(
             'nome'                       => $nome,
             'franquiahora'               => $franquiahora,
-            'valorhora'                  => $valorhora,
             'cliente'                    => $cliente,
             'franquiakm'                 => $franquiakm,
-            'valorkm'                    => $valorkm,
+            'valor_franquia'             => $valor_franquia,
             'extrahora'                  => $extrahora,
             'extrakm'                    => $extrakm,
             'pernoite'                   => $pernoite,
@@ -48,15 +47,14 @@ class Servico extends CI_Model  {
     }
 
 
-    function atualizar($id, $nome, $franquiahora, $valorhora, $cliente, $franquiakm, $valorkm, $extrahora, $extrakm, $pernoite, $batida, $domfer, $deslocamentorj, $deslocamentointerestadual, $pedagio, $valor_pago_agente, $valor_extra_agente, $valor_km_agente, $valor_pernoite_agente, $valor_deslocamentos_agente, $valor_adicional_agente, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno ){
+    function atualizar($id, $nome, $franquiahora, $valor_franquia, $cliente, $franquiakm, $extrahora, $extrakm, $pernoite, $batida, $domfer, $deslocamentorj, $deslocamentointerestadual, $pedagio, $valor_pago_agente, $valor_extra_agente, $valor_km_agente, $valor_pernoite_agente, $valor_deslocamentos_agente, $valor_adicional_agente, $combustivel, $alimentacao, $periculosidade, $auxveiculo, $addnoturno ){
 
         $data = array(
             'nome'                       => $nome,
             'franquiahora'               => $franquiahora,
-            'valorhora'                  => $valorhora,
             'cliente'                    => $cliente,
             'franquiakm'                 => $franquiakm,
-            'valorkm'                    => $valorkm,
+            'valor_franquia'             => $valor_franquia,
             'extrahora'                  => $extrahora,
             'extrakm'                    => $extrakm,
             'pernoite'                   => $pernoite,

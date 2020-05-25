@@ -110,3 +110,12 @@ a.but {
 .dashboard-text {
     margin-left: 25px;
 }
+
+.panel-body {
+    padding: 40px !important;
+}
+
+.margin-lateral {
+    margin-left: 10xp;
+    margin-right: 10px;
+}

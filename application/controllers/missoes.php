@@ -50,7 +50,41 @@ class Missoes extends MY_Controller {
         }
 	}
 
-	public function listar()
+
+
+    public function aprovar()
+    {
+        $this->load->model('missao');
+        $id = $this->uri->segment(3);
+        //@todo fix admin levels
+        if ( true || $this->nativesession->get('uNadmin') == 3 ) {
+            if (is_numeric($id)) {
+
+                $this->missao->aprovar($id);
+
+            }
+        }
+        redirect( $this->router->class . '/listar');
+    }
+
+
+    public function reprovar()
+    {
+        $this->load->model('missao');
+        $id = $this->uri->segment(3);
+        //@todo fix admin levels
+        if ( true || $this->nativesession->get('uNadmin') == 3 ) {
+            if (is_numeric($id)) {
+
+                $this->missao->reprovar($id);
+
+            }
+        }
+        redirect( $this->router->class . '/listar');
+    }
+
+
+    public function listar()
     {
         $this->load->view('estruturas/header');
 
@@ -122,7 +156,7 @@ class Missoes extends MY_Controller {
     {
         $this->load->model('servico');
         $servico = $this->servico->getByID($this->input->post('servico'))->row();
-        echo "$servico->franquiahora{QUEBRA}$servico->valorhora{QUEBRA}$servico->extrahora{QUEBRA}$servico->franquiakm{QUEBRA}$servico->valorkm{QUEBRA}$servico->extrakm";
+        echo "$servico->franquiahora{QUEBRA}$servico->extrahora{QUEBRA}$servico->franquiakm{QUEBRA}$servico->extrakm{QUEBRA}$servico->valor_franquia{QUEBRA}$servico->valor_pago_agente{QUEBRA}$servico->valor_extra_agente{QUEBRA}$servico->valor_km_agente{QUEBRA}$servico->valor_pernoite_agente{QUEBRA}$servico->valor_deslocamentos_agente{QUEBRA}$servico->valor_adicional_agente{QUEBRA}$servico->domfer{QUEBRA}$servico->batida{QUEBRA}$servico->deslocamentorj{QUEBRA}$servico->pedagio{QUEBRA}$servico->pernoite";
 
     }
 

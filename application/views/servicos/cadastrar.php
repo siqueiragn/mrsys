@@ -48,9 +48,10 @@
                                                  <input class="form-control input-sm mascara-numero-5" maxlength="255"  type="text" tabindex="1" name="franquiahora" id="franquiahora">
 
                                             </div>
-                                            <label class="col-lg-1 col-xs-1 control-label">Hora (R$)</label>
-                                            <div class="col-lg-2 col-xs-2">
-                                                <input type="text" class="form-control input-sm mascara-dinheiro"  tabindex="1"  name="valorhora" id="valorhora" placeholder="0,00">
+
+                                            <label class="col-lg-2 col-xs-2 control-label">Franquia de Quilometros<span></span></label>
+                                            <div class="col-lg-1 col-xs-1">
+                                                <input class="form-control input-sm mascara-numero" maxlength="255"  type="text" tabindex="1" name="franquiakm" id="franquiakm">
                                             </div>
 
                                             <label for="" class="col-xs-1 col-xs-1 control-label">Cliente</label>
@@ -67,14 +68,9 @@
 
                                         <div class="form-group">
 
-                                            <label class="col-lg-2 col-xs-2 control-label">Franquia de Quilometros<span></span></label>
-                                            <div class="col-lg-1 col-xs-1">
-                                                <input class="form-control input-sm mascara-numero" maxlength="255"  type="text" tabindex="1" name="franquiakm" id="franquiakm">
-                                            </div>
-
-                                            <label class="col-lg-1 col-xs-1 control-label">KM (R$)</label>
+                                            <label class="col-lg-2 col-xs-2 control-label">Valor Franquia (R$)</label>
                                             <div class="col-lg-2 col-xs-2">
-                                                <input type="text" class="form-control input-sm mascara-dinheiro"  tabindex="1"  name="valorkm" id="valorkm" placeholder="0,00">
+                                                <input type="text" class="form-control input-sm mascara-dinheiro text-right"  tabindex="1"  name="valor_franquia" id="valor_franquia" placeholder="0,00">
                                             </div>
 
                                         </div>

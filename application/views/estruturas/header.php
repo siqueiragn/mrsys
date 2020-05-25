@@ -49,6 +49,13 @@
     <script type="text/javascript" src="<?php echo site_url('/assets/js/jquery.validationEngine-pt_BR.js');?>"></script>
     <script src="<?php echo site_url('/assets/js/alertify.min.js');?>"></script>
 
+    <script>
+
+        $( document ).ready(function() {
+            $('.aba-area').css('display', 'none');
+        });
+
+    </script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo site_url('/assets/js/bootstrap.js');?>"></script>
@@ -86,6 +93,7 @@
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form  method="POST" class=" " action="<?php echo site_url($this->router->class . '/dbAuthme');?>">
             <ul class="nav navbar-nav menu-principal " style=" margin-top: 8px;">
                 <li>
                     <a href="<?php echo site_url();?>">
@@ -137,41 +145,26 @@
                         </li>
                     </ul>
                 </li>
+                <?php } else { ?>
+
+                    <li class="pull-right margin-lateral">
+                        <button class="btn btn btn-primary" type="submit" tabindex="3"> Login <i class="fa fa-lock"></i></button>
+                    </li>
+
+                    <li class="pull-right margin-lateral">
+                        <input type="password" style="width: 200px;"  tabindex="2" class="form-control" required placeholder="Senha" name="pass" aria-describedby="sizing-addon4">
+                    </li>
+
+                    <li class="pull-right margin-lateral">
+                        <input type="text" style="width: 200px;" tabindex="1" class="form-control" required name="user" placeholder="Usuário" aria-describedby="sizing-addon3">
+                    </li>
+
+
                 <?php } ?>
+
             </ul>
+            </form>
 
-            <div class="navbar-form navbar-right" style="margin-bottom: 0;  margin-top: 8px;">
-
-                <?php if (!$this->nativesession->get('autenticado')) { ?>
-                <form  method="POST" class="login-input-group hidden" action="<?php echo site_url($this->router->class . '/dbAuthme');?>">
-
-                    <div class="col-lg-5 col-xs-5" style="height: 30px;">
-                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
-                            <span class="input-group-addon" id="sizing-addon3"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-                            <input type="text" class="form-control" required name="user" placeholder="Usuário" aria-describedby="sizing-addon3">
-                        </div>
-                    </div>
-                    <div class="col-lg-5 col-xs-5" style="height: 30px;">
-                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
-                            <span class="input-group-addon" id="sizing-addon4"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
-                            <input type="password" class="form-control" required placeholder="Senha" name="pass" aria-describedby="sizing-addon4">
-                        </div>
-                    </div>
-                    <button class="btn btn btn-primary" type="submit"><i class="fa fa-chevron-right"></i></button>
-
-                </form>
-
-                <div class="row register-input-group" style="margin-bottom: 8px;">
-
-                    <div class="col-lg-6 col-xs-6">
-                        <button class="btn btn-sm btn-default" onclick="login();">Entrar</button>
-                    </div>
-
-                </div>
-
-                <?php } ?>
-
-            </div>
 
         </div>
     </div>

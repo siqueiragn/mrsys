@@ -56,17 +56,26 @@
                     </tr>
                     <?php
 
-					foreach( $objetos->result() as $i=>$linha) { ?>
+					foreach( $objetos->result() as $i=>$linha) {
+					    switch ($linha->status) {
+                            case 0: $status = 'PENDENTE'; break;
+                            case 1: $status = 'APROVADO'; break;
+                            case 2: $status = 'REPROVADO'; break;
+                            default: $status = 'PENDENTE'; break;
+                        }
+					    ?>
 					<tr>
-                        <td>
+                        <td class="col-lg-2 col-xs-2">
 
-                            <a href="<?php echo site_url($this->router->class.'/editar/'.$linha->id); ?>" class="btn btn-primary btn-sm" title="Editar">Editar</a>
+                            <a href="<?php echo site_url($this->router->class.'/editar/'.$linha->id); ?>" class="btn btn-primary btn-sm" title="Editar">Consultar</a>
+                            <a href="<?php echo site_url($this->router->class.'/aprovar/'.$linha->id); ?>" class="btn btn-success btn-sm" title="Editar">Aprovar</a>
+                            <a href="<?php echo site_url($this->router->class.'/reprovar/'.$linha->id); ?>" class="btn btn-danger btn-sm" title="Editar">Reprovar</a>
 
                         </td>
 					    <td><?php echo $linha->id;?> </td>
 					    <td><?php echo $linha->data_hora_inicial;?> </td>
 					    <td><?php echo $linha->data_hora_final;?> </td>
-					    <td><?php echo $linha->status == 0 ? 'PENDENTE' : 'APROVADO';?> </td>
+					    <td><?php echo $status;?> </td>
 					</tr>
                     <?php } ?>
 					</table>

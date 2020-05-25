@@ -21,7 +21,8 @@
                                 <div class="col-lg-4 col-xs-4 text-right">
 
                                     <button type="submit" class="btn btn-sm btn-default">Salvar <i class="fa fa-save"></i></button>
-                                    <button type="reset" class="btn btn-sm btn-default">Limpar</button>
+                                    <a href="<?php echo site_url($this->router->class.'/aprovar/'.$objeto->missao_id); ?>" class="btn btn-success btn-sm" title="Editar">Aprovar</a>
+                                    <a href="<?php echo site_url($this->router->class.'/reprovar/'.$objeto->missao_id); ?>" class="btn btn-danger btn-sm" title="Editar">Reprovar</a>
                                     <a href="<?php echo site_url($this->router->class . '/listar');?>" class="btn btn-sm btn-default">Listar <i class="fa fa-arrow-left"></i></a>
 
                                 </div>
@@ -66,14 +67,14 @@
                                     <label for="" class="col-xs-2 col-lg-2 control-label">Franquia Horas</label>
                                     <div class="col-lg-1 col-xs-1">
                                         <input type="text" class="form-control input-sm" readonly id="franquia_hora" value="<?php echo $objeto->franquiahora;?>">
-                                        <input type="hidden" class="form-control input-sm" readonly id="franquia_hora_valor" value="<?php echo $objeto->valorhora;?>">
+                                        <input type="hidden" class="form-control input-sm" readonly id="franquia_hora_valor" value="<?php echo 0;?>">
                                         <input type="hidden" class="form-control input-sm" readonly id="franquia_hora_valor_extra" value="<?php echo $objeto->extrahora;?>">
                                     </div>
 
                                     <label for="" class="col-xs-1 col-lg-1 control-label">Franquia KM</label>
                                     <div class="col-lg-2 col-xs-2">
                                         <input type="text" class="form-control input-sm" readonly id="franquia_km" value="<?php echo $objeto->franquiakm;?>">
-                                        <input type="hidden" class="form-control input-sm" readonly id="franquia_km_valor" value="<?php echo $objeto->valorkm;?>">
+                                        <input type="hidden" class="form-control input-sm" readonly id="franquia_km_valor" value="<?php echo 0;?>">
                                         <input type="hidden" class="form-control input-sm" readonly id="franquia_km_valor_extra" value="<?php echo $objeto->extrakm;?>">
                                     </div>
 
