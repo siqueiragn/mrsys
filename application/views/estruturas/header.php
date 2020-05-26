@@ -74,6 +74,7 @@
 
     <!-- Custom JavaScript -->
     <script src="<?php echo site_url('/assets/js/funcoes.js');?>"></script>
+    <script src="<?php echo site_url('/assets/js/relatorios.js');?>"></script>
     <script src="<?php echo site_url('/assets/js/mascaras.js');?>"></script>
     <script src="<?php echo site_url('/assets/js/load-mascaras.js');?>"></script>
 
@@ -95,7 +96,7 @@
             <form  method="POST" class=" " action="<?php echo site_url($this->router->class . '/dbAuthme');?>">
             <ul class="nav navbar-nav menu-principal " style=" margin-top: 8px;">
                 <li>
-                    <a href="<?php echo site_url();?>">
+                    <a href="<?php echo site_url('/home');?>">
                     MRSys
                     </a>
                 </li>
@@ -121,16 +122,16 @@
                     <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Relatórios">Relatórios <span class="caret"></span></a>
                     <ul class="dropdown-menu ">
                         <li>
-                            <a href="<?php echo site_url('clientes/listar');?>">Missões Analítico</a>
+                            <a href="<?php echo site_url('relatorios/1');?>">Missões Analítico</a>
                         </li>
                         <li>
-                            <a href="<?php echo site_url('clientes/listar');?>">Missões x Cliente</a>
+                            <a href="<?php echo site_url('relatorios/2');?>">Missões x Cliente</a>
                         </li>
                         <li>
-                            <a href="<?php echo site_url('clientes/listar');?>">Despesas por Funcionário</a>
+                            <a href="<?php echo site_url('relatorios/3');?>">Despesas por Funcionário</a>
                         </li>
                         <li>
-                            <a href="<?php echo site_url('clientes/listar');?>">Serviços Custos</a>
+                            <a href="<?php echo site_url('relatorios/4');?>">Serviços Custos</a>
                         </li>
                     </ul>
                 </li>

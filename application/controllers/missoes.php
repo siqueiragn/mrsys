@@ -174,32 +174,4 @@ class Missoes extends MY_Controller {
         echo "$servico->franquiahora{QUEBRA}$servico->extrahora{QUEBRA}$servico->franquiakm{QUEBRA}$servico->extrakm{QUEBRA}$servico->valor_franquia{QUEBRA}$servico->valor_pago_agente{QUEBRA}$servico->valor_batida_extra{QUEBRA}$servico->valor_extra_agente{QUEBRA}$servico->valor_km_agente{QUEBRA}$servico->valor_pernoite_agente{QUEBRA}$servico->valor_deslocamentos_agente{QUEBRA}$servico->valor_adicional_agente{QUEBRA}$servico->domfer{QUEBRA}$servico->batida{QUEBRA}$servico->deslocamento{QUEBRA}$servico->pedagio{QUEBRA}$servico->pernoite";
 
     }
-
-    public function relatorio()
-    {
-
-        if (is_numeric($this->uri->segment(3))) {
-
-            switch ($this->uri->segment(3)) {
-
-                case 1:
-                    if ( $this->input->get('params')) {
-                        echo pre($this->input->get('params'));
-                        $params = unserialize($this->input->get('params'));
-                        echo pre($params);
-                    }
-                    echo pre("DEV.");
-                    exit;
-                break;
-
-                default:
-                    flashdata('alert-error', 'Relatório não encontrado!');
-                    redirect();
-                break;
-            }
-
-        }
-
-    }
-
 }

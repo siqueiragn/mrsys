@@ -68,7 +68,7 @@ class Ucp extends MY_Controller {
             else {
 
                 flashdata('alert-danger', 'Usuário e senha inválidos!');
-               redirect($this->router->class . '/login');
+                redirect($this->router->class . '/login');
             }
 
             redirect( $this->router->class . '/home');
@@ -119,19 +119,6 @@ class Ucp extends MY_Controller {
 
     function logout() {
         logout();
-    }
-
-    function registrar() {
-
-        if (!$this->nativesession->get('autenticado')) {
-
-            $this->load->view('estruturas/header');
-            $this->load->view('estruturas/registrar');
-
-        } else {
-            redirect( 'ucp/home?error=1');
-        }
-
     }
 
     function forgotPass() {

@@ -52,3 +52,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'ucp';
 $route['404_override'] = 'pagina404';
 $route['logout'] = '/ucp/logout';
+$route['relatorios/(:num)'] = "relatorios/index/$1";
+$route['home'] = "ucp/home";
