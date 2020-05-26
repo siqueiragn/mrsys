@@ -199,7 +199,7 @@ class Funcionarios extends MY_Controller {
         $login_id      = $this->input->post('login_id');
         $login_usuario = $this->input->post('login_usuario');
         $login_email   = $this->input->post('login_email');
-        $login_senha   = $this->input->post('login_senha');
+        $login_senha   = $this->input->post('login_senha') ? $this->input->post('login_senha') : null;
         $login_resenha = $this->input->post('login_resenha');
         $login_admin   = $this->input->post('login_admin');
         $login_ativo   = $this->input->post('login_ativo') == 'on' ? 1 : 0;

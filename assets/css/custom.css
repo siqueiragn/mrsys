@@ -134,3 +134,9 @@ a.but {
     width: 200px;
     height: 250px;
 }
+
+.alert {
+    width: 25%;
+    margin-left: 70%;
+    text-align: center !important;
+}

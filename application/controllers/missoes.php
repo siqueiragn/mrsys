@@ -86,19 +86,25 @@ class Missoes extends MY_Controller {
 
     public function listar()
     {
-        $this->load->view('estruturas/header');
 
         $this->load->model('missao');
 
+        $this->load->model('cliente');
+        $data['clientes'] = $this->cliente->getAll()->result();
+
+        $this->load->model('funcionario');
+        $data['funcionarios'] = $this->funcionario->getAtivos()->result();
+
         if ($this->input->get()) {
 
-       /*     $nome   = $this->input->get('nome');
-            $cpf    = limpar_campo($this->input->get('cpf'));
-            $status = $this->input->get('status');*/
+            $data_hora_inicial   = $this->input->get('data_hora_inicial');
+            $data_hora_final     = $this->input->get('data_hora_final');
+            $cliente             = $this->input->get('cliente');
+            $agente              = $this->input->get('agente');
+            $status              = $this->input->get('status');
 
-            $data['objetos'] = $this->missao->getAll();
+            $data['objetos'] = $this->missao->getAll( $data_hora_inicial, $data_hora_final, $cliente, $agente, $status );
 
-            //$data['objetos'] = $this->funcionario->getFilters( $nome, $cpf, $status );
 
         } else {
 
@@ -106,7 +112,9 @@ class Missoes extends MY_Controller {
 
         }
 
+        $this->load->view('estruturas/header');
         $this->load->view($this->router->class . '/listar', $data);
+        $this->load->view('estruturas/footer');
 
     }
 
@@ -154,6 +162,8 @@ class Missoes extends MY_Controller {
 
             }
 
+
+        flashdata('alert-success', 'Operação realizada com sucesso!');
         redirect( $this->router->class . '/listar');
     }
 
@@ -165,6 +175,31 @@ class Missoes extends MY_Controller {
 
     }
 
+    public function relatorio()
+    {
 
+        if (is_numeric($this->uri->segment(3))) {
+
+            switch ($this->uri->segment(3)) {
+
+                case 1:
+                    if ( $this->input->get('params')) {
+                        echo pre($this->input->get('params'));
+                        $params = unserialize($this->input->get('params'));
+                        echo pre($params);
+                    }
+                    echo pre("DEV.");
+                    exit;
+                break;
+
+                default:
+                    flashdata('alert-error', 'Relatório não encontrado!');
+                    redirect();
+                break;
+            }
+
+        }
+
+    }
 
 }

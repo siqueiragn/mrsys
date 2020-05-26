@@ -31,6 +31,17 @@ class MY_Controller extends CI_Controller
 
         }
 
+        /* ===== FUNÇÃO FLASHDATA ===== */
+        function flashdata( $classe, $mensagem ){
+
+            $ci = get_instance();
+
+            $ci->session->set_flashdata('classe', $classe);
+            $ci->session->set_flashdata('mensagem', $mensagem);
+
+        }
+        /* ===== FIM FUNÇÃO FLASHDATA ===== */
+
         function firstName( $name ) {
 
             return substr( $name, 0, strpos($name, " "));
@@ -144,7 +155,7 @@ class MY_Controller extends CI_Controller
 
 
         /* ==================== VERIFICAÇÃO LOGIN ==================== */
-        $permitidas = array('ucp/login', 'ucp', 'ucp/logout', 'ucp/dbAuthme');
+        $permitidas = array('ucp/login', 'ucp', 'ucp/logout', 'ucp/dbAuthme', 'ucp/gerarHash');
 
         if( !$this->nativesession->get('username') ){
             if( !in_array($this->router->class.'/'.$this->router->method, $permitidas) ){

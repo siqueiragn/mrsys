@@ -77,15 +77,20 @@ class User extends CI_Model  {
 
     }
 
-    function update($login_id, $login_usuario, $login_email, $login_senha, $login_admin, $login_ativo) {
+    function update($login_id, $login_usuario, $login_email, $login_senha = null, $login_admin, $login_ativo) {
+
 
         $data = array(
             'username' => $login_usuario,
-            'password' => $login_senha,
             'uEmail'   => $login_email,
             'admin'    => $login_admin,
             'ativo'    => $login_ativo,
         );
+
+        if ( $login_senha != null ) {
+            $login_senha = hash('whirlpool', $login_senha);
+            $data['password'] = $login_senha;
+        }
 
         $this->db->where('id', $login_id);
         $this->db->update($this->table, $data);

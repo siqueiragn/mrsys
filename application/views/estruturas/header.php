@@ -151,11 +151,11 @@
                     </li>
 
                     <li class="pull-right margin-lateral">
-                        <input type="password" style="width: 200px;"  tabindex="2" class="form-control" required placeholder="Senha" name="pass" aria-describedby="sizing-addon4">
+                        <input type="password" style="width: 200px;"  tabindex="2" class="form-control" placeholder="Senha" name="pass" aria-describedby="sizing-addon4">
                     </li>
 
                     <li class="pull-right margin-lateral">
-                        <input type="text" style="width: 200px;" tabindex="1" class="form-control" required name="user" placeholder="Usuário" aria-describedby="sizing-addon3">
+                        <input type="text" style="width: 200px;" tabindex="1" class="form-control" name="user" placeholder="Usuário" aria-describedby="sizing-addon3">
                     </li>
 
 

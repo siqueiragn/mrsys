@@ -33,15 +33,9 @@ class Ucp extends MY_Controller {
 
     public function login() {
 
-
-        $this->load->model('NewsModel');
-
-        if (!$this->nativesession->get('autenticado')) {
-            $this->load->view('estruturas/header');
-            $this->load->view('estruturas/home');
-        } else {
-            redirect( 'ucp/home?error=1');
-        }
+        $this->load->view('estruturas/header');
+        $this->load->view('estruturas/home');
+        $this->load->view('estruturas/footer');
 
     }
 
@@ -72,7 +66,9 @@ class Ucp extends MY_Controller {
                 setLoginData($result->row());
             }
             else {
-               redirect($this->router->class . '/login?error=1');
+
+                flashdata('alert-danger', 'Usuário e senha inválidos!');
+               redirect($this->router->class . '/login');
             }
 
             redirect( $this->router->class . '/home');

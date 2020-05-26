@@ -109,11 +109,53 @@ class Missao extends CI_Model  {
 
     }
 
-    function getAll() {
+    function getAll( $data_inicial = null, $data_final = null, $cliente = null, $agente = null, $status = null) {
 
-            return $this->db->select('*')
-                            ->order_by('id')
-                            ->get($this->table);
+        $sql = "SELECT M.ID AS missao_id,
+		                                M.*,
+		                                S.ID as servico_id,
+		                                s.NOME as servico_nome,
+		                                S.*,
+		                                F.NOME AS agente_nome,
+		                                C.NOME AS cliente_nome,
+		                                M.KM_FINAL - M.KM_INICIAL AS km_diferenca,
+		                                ((M.KM_FINAL - M.KM_INICIAL) - S.FRANQUIAKM) * CAST(REPLACE(S.EXTRAKM, ',', '.') AS DECIMAL(12,2))  AS total_km_extra,
+		                                ((M.KM_FINAL - M.KM_INICIAL) - S.FRANQUIAKM)  AS qtd_total_km_extra,
+		                                TIMESTAMPDIFF(HOUR, STR_TO_DATE(M.DATA_HORA_INICIAL, '%d/%m/%Y %H:%i'), STR_TO_DATE(M.DATA_HORA_FINAL, '%d/%m/%Y %H:%i')) AS hora_diferenca,
+		                                ((TIMESTAMPDIFF(HOUR, STR_TO_DATE(M.DATA_HORA_INICIAL, '%d/%m/%Y %H:%i'), STR_TO_DATE(M.DATA_HORA_FINAL, '%d/%m/%Y %H:%i'))) - S.FRANQUIAHORA) * CAST(REPLACE(S.EXTRAHORA, ',', '.') AS DECIMAL(12,2))  AS total_hora_extra,
+		                                ((TIMESTAMPDIFF(HOUR, STR_TO_DATE(M.DATA_HORA_INICIAL, '%d/%m/%Y %H:%i'), STR_TO_DATE(M.DATA_HORA_FINAL, '%d/%m/%Y %H:%i'))) - S.FRANQUIAHORA)  AS qtd_total_hora_extra
+                                   FROM MISSOES M 
+                             INNER JOIN SERVICOS S
+                                     ON M.SERVICO = S.ID
+                             INNER JOIN CLIENTES C
+                                     ON C.ID = S.CLIENTE
+                             INNER JOIN FUNCIONARIOS F
+                                     ON F.ID = M.AGENTE WHERE 1='1' ";
+
+        if ( $data_inicial != null ) {
+            $sql .= " AND STR_TO_DATE(M.DATA_HORA_INICIAL, '%d/%m/%Y %H:%i') >= STR_TO_DATE('$data_inicial', '%d/%m/%Y %H:%i') ";
+        }
+
+        if ( $data_final != null ) {
+            $sql .= " AND STR_TO_DATE(M.DATA_HORA_FINAL, '%d/%m/%Y %H:%i') <= STR_TO_DATE('$data_final', '%d/%m/%Y %H:%i') ";
+        }
+
+        if ( $cliente != null ) {
+            $sql .= " AND C.ID = $cliente ";
+        }
+
+        if ( $agente != null ) {
+            $sql .= " AND F.ID = $agente ";
+        }
+        if ( $agente != null ) {
+            $sql .= " AND F.ID = $agente ";
+        }
+
+        if ( $status != null ) {
+            $sql .= " AND M.STATUS = $status";
+        }
+
+        return $this->db->query( $sql );
 
     }
 
