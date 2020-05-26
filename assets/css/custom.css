@@ -124,3 +124,13 @@ a.but {
     margin-left: 0;
     margin-right: 0;
 }
+
+.checkbox-medio {
+    width: 25px;
+    height: 25px;
+}
+
+.img-skin{
+    width: 200px;
+    height: 250px;
+}

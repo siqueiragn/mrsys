@@ -18,6 +18,9 @@
                                                     <ul class="nav nav-tabs">
                                                         <li role="presentation" class="active"><a href="#" class="aba-etapa-1 aba-link" id="1">Principal</a></li>
                                                         <li role="presentation"><a href="#" class="aba-etapa-2 aba-link" id="2">Documentos</a></li>
+                                                        <?php if ($this->nativesession->get('admin') == 3) { ?>
+                                                        <li role="presentation"><a href="#" class="aba-etapa-3 aba-link" id="3">Credenciais de Acesso</a></li>
+                                                        <?php } ?>
                                                     </ul>
                                                 </div>
                                                 <div class="col-lg-4 col-xs-4 text-right">
@@ -327,6 +330,69 @@
                                                 </div>
                                                 <?php } ?>
                                             </div>
+
+                                            <?php if ($this->nativesession->get('admin') == 3) { ?>
+
+                                            <div class="form-etapa-3 aba-area">
+
+                                                <div class="form-group">
+                                                    <h5>Atenção, preencher esses campos habilitará o acesso do funcionário ao sistema.</h5>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="hidden" name="login_id" id="login_id" value="<?php echo $usuario ? $usuario->id : null;?>">
+
+                                                    <label for="" class="col-lg-4 col-xs-4 control-label">Usuário de Acesso <span>*</span></label>
+                                                    <div class="col-lg-4 col-xs-4">
+                                                        <input type="text" class="input-sm form-control" tabindex="1" name="login_usuario" id="login_usuario" value="<?php echo ($usuario ? $usuario->username : null);?>">
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label for="" class="col-lg-4 col-xs-4 control-label">Email</label>
+                                                    <div class="col-lg-4 col-xs-4">
+                                                        <input type="text" class="input-sm form-control" tabindex="1" name="login_email" id="login_email" value="<?php echo $usuario ? $usuario->uEmail : null;?>">
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label for="" class="col-lg-4 col-xs-4 control-label">Senha de Acesso <span>*</span></label>
+                                                    <div class="col-lg-4 col-xs-4">
+                                                        <input type="password" class="form-control input-sm" tabindex="1" name="login_senha" id="pass">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label for="" class="col-lg-4 col-xs-4 control-label">Re-Senha de Acesso <span>*</span></label>
+                                                    <div class="col-lg-4 col-xs-4">
+                                                        <input type="password" class="form-control input-sm" tabindex="1" onblur="mustBeEqual()" name="login_resenha" id="confirmpass">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label for="" class="col-lg-4 col-xs-4 control-label">Nivel de Permissão <span>*</span></label>
+                                                    <div class="col-lg-4 col-xs-4">
+                                                        <select name="login_admin" id="login_admin" class="form-control input-sm" tabindex="1">
+                                                            <option value="1" <?php if ($usuario && $usuario->admin == 1) echo "selected";?> >Funcionário</option>
+                                                            <option value="2" <?php if ($usuario && $usuario->admin == 2) echo "selected";?> >Diretor</option>
+                                                            <option value="3" <?php if ($usuario && $usuario->admin == 3) echo "selected";?> >Administrador</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label for="" class="col-lg-4 col-xs-4 control-label">Ativo </label>
+                                                    <div class="col-lg-1 col-xs-1 text-left">
+                                                        <input type="checkbox" class="checkbox-medio" name="login_ativo" id="login_ativo" tabindex="1" <?php if ($usuario && $usuario->ativo == 1) echo "checked";?> >
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <?php } ?>
 
                                         </div>
 

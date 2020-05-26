@@ -12,6 +12,14 @@ class User extends CI_Model  {
 
 
     }
+    function getByFuncionarioCode( $codigo ) {
+
+        return $this->db->select('*')
+                        ->where("funcionario = $codigo")
+                        ->get($this->table);
+
+
+    }
 
     function getByEmail( $mail ) {
 
@@ -38,9 +46,6 @@ class User extends CI_Model  {
             'funcionario'   => $funcionario,
             'admin'         => $adminLevel,
         );
-
-        //$this->db->set('RegisterDate',"TO_DATE('$stamp','DD/MM/RR HH24:MI:SS')", false);
-
         $this->db->insert($this->table, $data);
 
     }
@@ -68,6 +73,21 @@ class User extends CI_Model  {
         }
 
         $this->db->where('uID', $codigo);
+        $this->db->update($this->table, $data);
+
+    }
+
+    function update($login_id, $login_usuario, $login_email, $login_senha, $login_admin, $login_ativo) {
+
+        $data = array(
+            'username' => $login_usuario,
+            'password' => $login_senha,
+            'uEmail'   => $login_email,
+            'admin'    => $login_admin,
+            'ativo'    => $login_ativo,
+        );
+
+        $this->db->where('id', $login_id);
         $this->db->update($this->table, $data);
 
     }

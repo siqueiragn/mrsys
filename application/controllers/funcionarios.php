@@ -29,6 +29,9 @@ class Funcionarios extends MY_Controller {
             $this->load->model('documento');
             $data['documentos'] = $this->documento->getAllByFunc( $this->uri->segment(3) )->result();
 
+            $this->load->model('user');
+            $data['usuario']    = $this->user->getByFuncionarioCode($this->uri->segment(3))->row();
+
             $this->load->view('estruturas/header');
             $this->load->view($this->router->class . '/editar', $data);
             $this->load->view('estruturas/footer');
@@ -103,7 +106,6 @@ class Funcionarios extends MY_Controller {
             $avatar = "";
             $extensao = "";
         }
-
 
         switch ( $this->input->get('acao')) {
 
@@ -192,7 +194,22 @@ class Funcionarios extends MY_Controller {
 
                 break;
 
-            }
+        }
+
+        $login_id      = $this->input->post('login_id');
+        $login_usuario = $this->input->post('login_usuario');
+        $login_email   = $this->input->post('login_email');
+        $login_senha   = $this->input->post('login_senha');
+        $login_resenha = $this->input->post('login_resenha');
+        $login_admin   = $this->input->post('login_admin');
+        $login_ativo   = $this->input->post('login_ativo') == 'on' ? 1 : 0;
+
+        $this->load->model('user');
+        if ( $login_id ) {
+            $this->user->update($login_id, $login_usuario, $login_email, $login_senha, $login_admin, $login_ativo);
+        } else {
+            $this->user->register($login_usuario, $login_email, $login_senha, $idFunc, $login_admin, $login_ativo);
+        }
 
         redirect( $this->router->class . '/listar');
     }
