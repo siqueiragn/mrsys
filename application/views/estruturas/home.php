@@ -35,12 +35,10 @@
 
                 <div class="row">
 
-                    <h3 class="text-left dashboard-text">Seja bem-vindo Celso.</h3>
+                    <h3 class="text-left dashboard-text">Seja bem-vindo, <?php echo firstName($this->nativesession->get('nome_completo'));?>.</h3>
                     <h4 class="text-left dashboard-text">Existem 3 missões aguardando avaliação.</h4>
 
                 </div>
-                <!--<img src="<?php /*echo site_url('assets/images/logo.png');*/?>" alt="">-->
-               <!-- <h5 class="text-center">Bem, parece que ainda não temos novidades, que coisa, não?</h5>-->
 
                 <div class="row chart-area">
 

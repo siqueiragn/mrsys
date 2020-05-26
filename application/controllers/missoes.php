@@ -57,7 +57,7 @@ class Missoes extends MY_Controller {
         $this->load->model('missao');
         $id = $this->uri->segment(3);
         //@todo fix admin levels
-        if ( true || $this->nativesession->get('uNadmin') == 3 ) {
+        if ( true || $this->nativesession->get('admin') == 3 ) {
             if (is_numeric($id)) {
 
                 $this->missao->aprovar($id);
@@ -73,7 +73,7 @@ class Missoes extends MY_Controller {
         $this->load->model('missao');
         $id = $this->uri->segment(3);
         //@todo fix admin levels
-        if ( true || $this->nativesession->get('uNadmin') == 3 ) {
+        if ( true || $this->nativesession->get('admin') == 3 ) {
             if (is_numeric($id)) {
 
                 $this->missao->reprovar($id);

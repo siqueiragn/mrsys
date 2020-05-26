@@ -39,8 +39,7 @@
 	<link href="<?php echo site_url('/assets/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
 	
 	<!-- MetisMenu CSS -->
-    <link href="<?php echo site_url('/assets/css/metisMenu.min.css');?>" rel="stylesheet">
-	
+
 	
     <!-- jQuery -->
     <script src="<?php echo site_url('/assets/js/jquery.min.js');?>"></script>

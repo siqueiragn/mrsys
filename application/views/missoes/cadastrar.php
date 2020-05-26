@@ -34,7 +34,7 @@
 
                                     <label for="" class="col-lg-2 col-xs-2 control-label">Agente</label>
                                     <div class="col-lg-4 col-xs-4">
-                                        <select name="agente" id="agente" class="form-control input-sm" tabindex="1">
+                                        <select name="agente" id="agente" required class="form-control input-sm" tabindex="1">
                                             <option value=""></option>
                                             <?php foreach ($funcionarios as $linha) { ?>
                                                 <option value="<?php echo $linha->id;?>"><?php echo $linha->nome;?></option>
@@ -56,7 +56,7 @@
 
                                     <label for="" class="col-xs-2 col-xs-2 control-label">Serviço</label>
                                     <div class="col-xs-4 col-lg-4">
-                                        <select name="servico" id="servico" class="form-control input-sm" tabindex="1" onchange="buscar_servico('<?php echo site_url($this->router->class . '/servicos');?>')">
+                                        <select name="servico" id="servico" required class="form-control input-sm" tabindex="1" onchange="buscar_servico('<?php echo site_url($this->router->class . '/servicos');?>')">
                                             <option value=""></option>
                                             <?php foreach($servicos as $linha) {?>
                                                 <option value="<?php echo $linha->id;?>"><?php echo $linha->nome;?></option>
@@ -225,7 +225,8 @@
 
                                     <label class="ccol-lg-4 col-xs-4 control-label">Hora extra pago ao agente (R$)</label>
                                     <div class="col-lg-2 col-xs-2">
-                                        <input type="text" class="form-control input-sm text-right" tabindex="1" name="valor_extra_agente" id="valor_extra_agente" placeholder="0,00" readonly>
+                                        <input type="hidden" name="valor_extra_agente" id="valor_extra_agente" readonly>
+                                        <input type="text" class="form-control input-sm text-right" tabindex="1" name="valor_pago_extra_agente" id="valor_pago_extra_agente" placeholder="0,00" readonly>
                                     </div>
 
                                 </div>
@@ -233,7 +234,8 @@
 
                                     <label class="col-lg-4 col-xs-4 control-label">KM extra pago ao agente (R$)</label>
                                     <div class="col-lg-2 col-xs-2">
-                                        <input type="text" class="form-control input-sm text-right" tabindex="1" name="valor_km_agente" id="valor_km_agente" placeholder="0,00" readonly>
+                                        <input type="hidden" name="valor_km_agente" id="valor_km_agente"  readonly>
+                                        <input type="text" class="form-control input-sm text-right" tabindex="1" name="valor_pago_km_agente" id="valor_pago_km_agente" placeholder="0,00" readonly>
                                     </div>
 
                                 </div>

@@ -20,34 +20,23 @@ class User extends CI_Model  {
                         ->get($this->table);
     }
 
-    function setTmpPass ( $id, $pass ) {
-
-        $data = array(
-            'tmpPass' => $pass,
-        );
-
-        $this->db->where('uID', $id);
-        $this->db->update($this->table, $data);
-
-    }
 
     function authMe( $user, $pass ) {
 
         $pass = hash('whirlpool', $pass);
-        return $this->db->select('*')
-                        ->where("uNome = '$user' AND uSenha = '$pass'")
-                        ->get($this->table);
+        return $this->db->query("SELECT * FROM $this->table a INNER JOIN funcionarios b ON a.funcionario = b.id WHERE username = '$user' AND password = '$pass'");
 
     }
 
-    function register( $user, $email, $pass, $stamp ) {
+    function register( $user, $email, $pass, $funcionario, $adminLevel ) {
 
         $pass = hash('whirlpool', $pass);
         $data = array(
-            'uNome'         => $user,
-            'uSenha'        => $pass,
+            'username'      => $user,
+            'password'      => $pass,
             'uEmail'        => $email,
-            'uRegisterDate' => $stamp,
+            'funcionario'   => $funcionario,
+            'admin'         => $adminLevel,
         );
 
         //$this->db->set('RegisterDate',"TO_DATE('$stamp','DD/MM/RR HH24:MI:SS')", false);

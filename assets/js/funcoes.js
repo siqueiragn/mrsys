@@ -47,12 +47,6 @@ $('.datepicker').datetimepicker({useCurrent: false, format: 'DD/MM/YYYY',locale:
 });
 
 
-function rem(){
-
-    alertify.confirm('Você tem certeza que deseja realizar esta operação?', function(){ $('#remover').val('1'); $('form')[0].submit(); });
-
-}
-
 function mustBeEqual() {
 
     if ($('#pass').val() != '' && $('#confirmpass').val() != '') {
@@ -61,63 +55,6 @@ function mustBeEqual() {
              $('#confirmpass').val('');
          }
     }
-}
-
-function changeSkin( src, direction ) {
-
-    skin = parseInt($('#skin').val());
-
-    skin += parseInt(direction);
-    if ( skin > 0 && skin < 312) {
-
-        $('.img-skin').attr('src', src + '/' + skin + '.png');
-        $('#skin').val(skin);
-
-    }
-
-}
-
-function recusar_aplicacao() {
-    $('#status').val('recusar');
-
-    $('.area-recusar').removeClass('hidden');
-
-}
-
-function paginationCharacter( direction ) {
-
-    section = parseInt($('#active-section').val());
-    section += parseInt(direction);
-    if ( section > 0 && section < 5) {
-        $('.sections').addClass('hidden');
-        $('.section-' + section).removeClass('hidden');
-
-        if ( section == 1 ) {
-            $('#left-btn').addClass('disabled');
-        } else {
-            $('#left-btn').removeClass('disabled');
-        }
-        if ( section == 4 ) {
-            $('#right-btn').addClass('disabled');
-        } else {
-            $('#right-btn').removeClass('disabled');
-        }
-
-        $('#active-section').val( section );
-    }
-}
-
-function validateFields( val ) {
-
-    if (val == 0) {
-        $(".cartao").attr('disabled', true);
-    }
-
-}
-
-function login() {
-    $('.register-input-group').addClass("hidden");
-    $('.login-input-group').removeClass("hidden");
 }
 
 function download_arquivo( elemento, url ) {
@@ -155,6 +92,7 @@ function calcular_km() {
             $('.area-km-extras').removeClass('hidden');
             quantidade_extra = diferenca - franquia_km;
             $(".km_extra_valor").val( (quantidade_extra * parseFloat(($('#franquia_km_valor_extra').val()).replace(",", "."))).toFixed(2));
+            $("#valor_pago_km_agente").val( (quantidade_extra * parseFloat(($('#valor_km_agente').val()).replace(",", "."))).toFixed(2) ); // pgto agente
             $(".km_extra_quantidade").val(quantidade_extra);
         } else {
             $('.area-km-extras').addClass('hidden');
@@ -183,7 +121,8 @@ function calcular_diferenca_data() {
             if ( diferenca > franquia_horas ) {
                 $('.area-horas-extras').removeClass('hidden');
                 quantidade_extra = diferenca - franquia_horas;
-                $(".hora_extra_valor").val( (quantidade_extra * parseFloat(($('#franquia_hora_valor_extra').val()).replace(",", "."))).toFixed(2) );
+                $(".hora_extra_valor").val( (quantidade_extra * parseFloat(($('#franquia_hora_valor_extra').val()).replace(",", "."))).toFixed(2) ); // serviço
+                $("#valor_pago_extra_agente").val( (quantidade_extra * parseFloat(($('#valor_extra_agente').val()).replace(",", "."))).toFixed(2) ); // pgto agente
                 $(".hora_extra_quantidade").val( quantidade_extra.toFixed(2)  );
             } else {
                 $('.area-horas-extras').addClass('hidden');

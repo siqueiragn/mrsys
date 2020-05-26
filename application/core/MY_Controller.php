@@ -22,23 +22,18 @@ class MY_Controller extends CI_Controller
 
             $CI = get_instance();
 
-            $CI->nativesession->set('userID', $user->uID);
-            $CI->nativesession->set('username', $user->uNome);
+            $CI->nativesession->set('userID', $user->id);
+            $CI->nativesession->set('username', $user->username);
+            $CI->nativesession->set('nome_completo', $user->nome);
             $CI->nativesession->set('email', $user->uEmail);
-            $CI->nativesession->set('admin', $user->uNadmin);
-            $CI->nativesession->set('register', $user->uRegisterDate);
+            $CI->nativesession->set('admin', $user->admin);
             $CI->nativesession->set('autenticado', true);
 
         }
 
-        function destruirTemporario(){
+        function firstName( $name ) {
 
-            $CI = get_instance();
-
-            $CI->nativesession->delete('user');
-            $CI->nativesession->delete('email');
-            $CI->nativesession->delete('pass');
-            $CI->nativesession->delete('autenticadoTemporariamente');
+            return substr( $name, 0, strpos($name, " "));
 
         }
 
@@ -52,7 +47,6 @@ class MY_Controller extends CI_Controller
 
         }
 
-
         function logout()
         {
 
@@ -60,10 +54,9 @@ class MY_Controller extends CI_Controller
 
             $CI->nativesession->delete('userID');
             $CI->nativesession->delete('username');
+            $CI->nativesession->delete('nome_completo');
             $CI->nativesession->delete('email');
             $CI->nativesession->delete('admin');
-            $CI->nativesession->delete('register');
-            $CI->nativesession->delete('lastLogin');
             $CI->nativesession->delete('autenticado');
 
             redirect($CI->router->class.'/login');
@@ -139,17 +132,6 @@ class MY_Controller extends CI_Controller
 
         }
 
-        function cleanName( $name ) {
-
-            return str_replace("_", " ", $name);
-        }
-
-        function modelo_email($arquivo) {
-
-            return "C:/xampp/htdocs/theproject/ucp/application/views/estruturas/mail/$arquivo";
-
-        }
-
         function generateRandomString($length = 10) {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $charactersLength = strlen($characters);
@@ -161,27 +143,8 @@ class MY_Controller extends CI_Controller
         }
 
 
-         function authMail( &$mail )
-        {
-
-        $mail->CharSet = "utf-8";
-        $mail->IsHTML(true);
-        $mail->IsSMTP();
-        $mail->SMTPAuth = true; // enable SMTP authentication
-        $mail->SMTPSecure = "tls"; // sets the prefix to the servier
-
-        $mail->Host = "smtp.gmail.com";
-        $mail->Port = 587;
-        $mail->Username = "lsrpdevteam@gmail.com";
-        $mail->Password = "lsrpdevteam2019";
-        $mail->From = "lsrpdevteam@gmail.com";
-        $mail->FromName = "Los Santos Roleplay";
-
-        }
-
-
         /* ==================== VERIFICAÇÃO LOGIN ==================== */
-        $permitidas = array('ucp/login', 'ucp', 'ucp/logout', 'ucp/dbAuthme', 'ucp/registrar', 'ucp/dbRegister', 'ucp/questionario', 'ucp/dbRegisterStepTwo', 'ucp/staff', 'ucp/about', 'ucp/forgotPass', 'mails/recPassword');
+        $permitidas = array('ucp/login', 'ucp', 'ucp/logout', 'ucp/dbAuthme');
 
         if( !$this->nativesession->get('username') ){
             if( !in_array($this->router->class.'/'.$this->router->method, $permitidas) ){
